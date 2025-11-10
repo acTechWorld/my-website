@@ -1,1 +1,16 @@
 @import "tailwindcss";
+@keyframes fadeBlink {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.blink-cursor {
+    animation: fadeBlink 1.2s infinite ease-in-out;
+}

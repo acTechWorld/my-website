@@ -75,7 +75,7 @@ const SectionContact: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-gray-900 text-white py-24"
+      className="relative overflow-hidden dark:bg-gray-800 text-white py-24"
     >
       <div className="container mx-auto px-4 relative z-10">
         <h3 className="text-3xl font-semibold text-blue-400 mb-4">

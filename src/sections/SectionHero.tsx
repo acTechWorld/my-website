@@ -11,12 +11,12 @@ const techIcons = [
 
 const Hero: FC = () => {
   return (
-    <section className="relative overflow-hidden py-28 ">
+    <section className="relative overflow-hidden py-28 bg-white dark:bg-gray-900">
        <div
         className="absolute inset-0 bg-cover bg-center invert-100"
         style={{
           backgroundImage:
-             "url('/assets/imgs/hero-1/background.png')",
+             "url('/assets/imgs/background_hero.png')",
           }}
         ></div>
       <div className="container mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center justify-between">
@@ -30,10 +30,10 @@ const Hero: FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold my-4"
+            className="text-4xl md:text-5xl font-bold my-4 text-gray-100"
           >
             <span className="text-blue-600">{`{Full Stack}`}</span> Website & Web
-            App Developer<span className="animate-pulse text-blue-500">_</span>
+            App Developer<span className="blink-cursor text-blue-500 ml-1">_</span>
           </motion.h1>
 
           <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
@@ -51,17 +51,41 @@ const Hero: FC = () => {
               href="/ayesha%20asghar.pdf"
               target="_blank"
               download
-              className="btn bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:opacity-90 transition"
+              className="btn bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:opacity-90 transition"
             >
               Download Resume
             </a>
-            <a
-              href="#contact"
-              className="border border-gray-400 dark:border-gray-600 px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 transition"
-            >
-              Hire me
-              <i className="ri-arrow-right-line"></i>
-            </a>
+            
+            <motion.a
+      href="#contact"
+      className="relative overflow-hidden border-2 border-gray-400 dark:border-purple-800 px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-purple-800 dark:text-gray-100 cursor-pointer bg-purple-600  hover:bg-purple-800"
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ type: "spring", stiffness: 300, damping: 15 }}
+    >
+      {/* Center-to-edge gradient pulse */}
+      <motion.span
+        className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl opacity-30 z-0"
+        initial={{ scale: 0, opacity: 0.6 }}
+        animate={{ scale: 1.5, opacity: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      />
+
+      {/* Button text */}
+      <span className="relative z-10 flex items-center gap-2">
+        Hire me
+        <i className="ri-arrow-right-line"></i>
+      </span>
+
+      {/* Hover effect */}
+      <motion.div
+        className="absolute inset-0 rounded-xl z-0 pointer-events-none"
+        whileHover={{ scale: 1.05, opacity: 0.1 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      />
+    </motion.a>
+
+
           </div>
 
           <p className="text-gray-500 dark:text-gray-400 mb-4">

@@ -168,12 +168,14 @@ const SectionResume: React.FC = () => {
     <section
       id="resume"
       className="relative overflow-hidden bg-gray-900 text-white py-24"
-      style={{
-        backgroundImage: "url('/assets/imgs/projects/projects-1/background.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
     >
+      <div
+        className="absolute inset-0 bg-cover bg-center invert-50"
+        style={{
+          backgroundImage:
+             "url('/assets/imgs/background_resume.png')",
+          }}
+        ></div>
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-end gap-6">

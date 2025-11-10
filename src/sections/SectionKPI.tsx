@@ -24,7 +24,7 @@ const SectionKPI: React.FC = () => {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden z-0 py-16 bg-gray-900 text-white"
+      className="relative overflow-hidden z-0 py-16 dark:bg-gray-800"
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap items-center justify-between gap-8">
@@ -35,7 +35,7 @@ const SectionKPI: React.FC = () => {
             >
               <div className="flex items-center text-center mx-auto">
                 <span className="text-5xl font-medium text-blue-400 flex items-center">
-                  <span className="text-6xl font-semibold text-white">
+                  <span className="text-6xl font-semibold text-gray-100">
                     {inView ? (
                       <CountUp
                         start={0}
@@ -50,7 +50,7 @@ const SectionKPI: React.FC = () => {
                 </span>
                 <div className="text-start ms-3">
                   <p className="text-lg text-gray-400 mb-0">{item.label1}</p>
-                  <p className="text-lg font-bold mb-0 text-white">
+                  <p className="text-lg font-bold mb-0 text-gray-100">
                     {item.label2}
                   </p>
                 </div>
