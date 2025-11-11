@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
+import ActionButton from "@/components/ActionButton";
 import {
   Phone,
   Mail,
   Github,
   MapPin,
   Linkedin,
-  ArrowUpRight,
 } from "lucide-react";
 
 const contactItems = [
@@ -199,14 +199,7 @@ const SectionContact: React.FC = () => {
               </div>
 
               <div className="md:col-span-2">
-                <button
-                  type="submit"
-                  disabled={isSending}
-                  className={`inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-6 py-3 rounded-lg mt-2 hover:opacity-90 transition disabled:opacity-50 ${isSending ? '' : 'cursor-pointer'}`}
-                >
-                  {isSending ? "Sending..." : sent ? "Sent!" : "Send Message"}
-                  <ArrowUpRight className="w-5 h-5" />
-                </button>
+                <ActionButton className="flex-left" type="submit" disabled={isSending} text={isSending ? "Sending..." : sent ? "Sent!" : "Send Message"}/>
               </div>
             </form>
           </div>

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import {
-  ArrowUpRight,
   GraduationCap,
   Briefcase,
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
+import ActionButton from "@/components/ActionButton";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface ResumeItem {
   year: string;
@@ -164,6 +165,73 @@ const SectionResume: React.FC = () => {
   const [expandedExp, setExpandedExp] = useState<number | null>(null);
   const [expandedEducation, setExpandedEducation] = useState<number | null>(null);
 
+  const renderCard = (
+    item: ResumeItem,
+    isOpen: boolean,
+    toggle: () => void
+  ) => (
+    <div
+      className="group relative p-4 mb-6 rounded-xl bg-gray-900 border border-gray-700 cursor-pointer"
+      onClick={toggle}
+    >
+      {/* Animated border */}
+      <span className="absolute top-0 left-0 h-0.5 w-0 bg-blue-500 transition-all duration-500 ease-out group-hover:w-full"></span>
+      <span className="absolute top-0 right-0 w-0.5 h-0 bg-blue-500 transition-all duration-500 ease-out delay-150 group-hover:h-full"></span>
+      <span className="absolute bottom-0 left-0 w-0.5 h-0 bg-blue-500 transition-all duration-500 ease-out delay-150 group-hover:h-full"></span>
+      <span className="absolute bottom-0 right-0 h-0.5 w-0 bg-blue-500 transition-all duration-500 ease-out delay-300 group-hover:w-full"></span>
+
+      <div className="relative z-10">
+        <div className="flex justify-between items-center mb-1">
+          <p className="text-blue-400 font-semibold">{item.year}</p>
+          {item.type && (
+            <span className="text-gray-400 text-sm italic">{item.type}</span>
+          )}
+        </div>
+        <h5 className="text-lg font-medium">{item.title}</h5>
+        <p className="text-gray-400">{item.subtitle}</p>
+
+        {item.description && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              toggle();
+            }}
+            className="flex items-center gap-2 mt-3 text-blue-400 hover:text-blue-300 text-sm cursor-pointer"
+          >
+            {isOpen ? (
+              <>
+                Hide details <ChevronUp className="w-4 h-4" />
+              </>
+            ) : (
+              <>
+                Show details <ChevronDown className="w-4 h-4" />
+              </>
+            )}
+          </button>
+        )}
+
+        {/* Smooth expand animation */}
+        <AnimatePresence initial={false}>
+          {isOpen && item.description && (
+            <motion.div
+              key="content"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              <div
+                className="mt-3 text-white text-md border-t border-gray-700 pt-3"
+                dangerouslySetInnerHTML={{ __html: item.description }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+
   return (
     <section
       id="resume"
@@ -172,27 +240,22 @@ const SectionResume: React.FC = () => {
       <div
         className="absolute inset-0 bg-cover bg-center invert-50"
         style={{
-          backgroundImage:
-             "url('/assets/imgs/background_resume.png')",
-          }}
-        ></div>
+          backgroundImage: "url('/assets/imgs/background_resume.png')",
+        }}
+      ></div>
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-end gap-6">
           <div>
-            <h3 className="text-3xl font-semibold text-blue-400 mb-3">My Resume</h3>
+            <h3 className="text-3xl font-semibold text-blue-400 mb-3">
+              My Resume
+            </h3>
             <p className="text-gray-300 text-lg leading-relaxed">
-              I believe that working hard and learning every day will help me improve and satisfy my customers.
+              I believe that working hard and learning every day will help me
+              improve and satisfy my customers.
             </p>
           </div>
-
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-6 py-3 rounded-lg hover:opacity-90 transition"
-          >
-            Get in touch
-            <ArrowUpRight className="w-5 h-5" />
-          </a>
+          <ActionButton text="Get in touch" />
         </div>
 
         {/* Resume Cards */}
@@ -205,52 +268,13 @@ const SectionResume: React.FC = () => {
               </div>
               <h3 className="text-2xl font-semibold">Education</h3>
             </div>
-
-            {educationData.map((item, index) => {
-              const isOpen = expandedEducation === index;
-
-              return (
-                <div
-                  key={index}
-                  className="p-4 mb-6 rounded-xl bg-gray-900 border border-gray-700 hover:border-blue-500 transition cursor-pointer"
-                  onClick={() => setExpandedEducation(isOpen ? null : index)}
-                >
-                  <div className="flex justify-between items-center mb-1">
-                    <p className="text-blue-400 font-semibold">{item.year}</p>
-                    {item.type && <span className="text-gray-400 text-sm italic">{item.type}</span>}
-                  </div>
-                  <h5 className="text-lg font-medium">{item.title}</h5>
-                  <p className="text-gray-400">{item.subtitle}</p>
-
-                  {item.description && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation(); // Prevent card click
-                        setExpandedEducation(isOpen ? null : index);
-                      }}
-                      className="flex items-center gap-2 mt-3 text-blue-400 hover:text-blue-300 text-sm cursor-pointer"
-                    >
-                      {isOpen ? (
-                        <>
-                          Hide details <ChevronUp className="w-4 h-4" />
-                        </>
-                      ) : (
-                        <>
-                          Show details <ChevronDown className="w-4 h-4" />
-                        </>
-                      )}
-                    </button>
-                  )}
-
-                  {isOpen && item.description && (
-                    <div
-                      className="mt-3 text-white text-md border-t border-gray-700 pt-3"
-                      dangerouslySetInnerHTML={{ __html: item.description }}
-                    />
-                  )}
-                </div>
-              );
-            })}
+            {educationData.map((item, index) =>
+              renderCard(item, expandedEducation === index, () =>
+                setExpandedEducation(
+                  expandedEducation === index ? null : index
+                )
+              )
+            )}
           </div>
 
           {/* Experience */}
@@ -261,57 +285,17 @@ const SectionResume: React.FC = () => {
               </div>
               <h3 className="text-2xl font-semibold">Experience</h3>
             </div>
-
-            {experienceData.map((item, index) => {
-              const isOpen = expandedExp === index;
-
-              return (
-                <div
-                  key={index}
-                  className="p-4 mb-6 rounded-xl bg-gray-900 border border-gray-700 hover:border-blue-500 transition cursor-pointer"
-                  onClick={() => setExpandedExp(isOpen ? null : index)}
-                >
-                  <div className="flex justify-between items-center mb-1">
-                    <p className="text-blue-400 font-semibold">{item.year}</p>
-                    {item.type && <span className="text-gray-400 text-sm italic">{item.type}</span>}
-                  </div>
-                  <h5 className="text-lg font-medium">{item.title}</h5>
-                  <p className="text-gray-400">{item.subtitle}</p>
-
-                  {item.description && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation(); // Prevent card click
-                        setExpandedExp(isOpen ? null : index);
-                      }}
-                      className="flex items-center gap-2 mt-3 text-blue-400 hover:text-blue-300 text-sm cursor-pointer"
-                    >
-                      {isOpen ? (
-                        <>
-                          Hide details <ChevronUp className="w-4 h-4" />
-                        </>
-                      ) : (
-                        <>
-                          Show details <ChevronDown className="w-4 h-4" />
-                        </>
-                      )}
-                    </button>
-                  )}
-
-                  {isOpen && item.description && (
-                    <div
-                      className="mt-3 text-white text-md border-t border-gray-700 pt-3"
-                      dangerouslySetInnerHTML={{ __html: item.description }}
-                    />
-                  )}
-                </div>
-              );
-            })}
+            {experienceData.map((item, index) =>
+              renderCard(item, expandedExp === index, () =>
+                setExpandedExp(expandedExp === index ? null : index)
+              )
+            )}
           </div>
         </div>
       </div>
     </section>
   );
 };
+
 
 export default SectionResume;

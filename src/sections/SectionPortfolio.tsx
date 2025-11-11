@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github, Globe } from "lucide-react";
+import { Github, Globe } from "lucide-react";
+import ActionButton from "@/components/ActionButton";
 
 interface Project {
   title: string;
@@ -178,13 +179,7 @@ const SectionPortfolio: React.FC = () => {
 
         {/* See All Button */}
         <div className="text-center mt-16">
-          <a
-            href="/portfolio"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-6 py-3 rounded-lg hover:opacity-90 transition"
-          >
-            See all projects
-            <ArrowUpRight className="w-5 h-5" />
-          </a>
+          <ActionButton text="See all projects"/>
         </div>
       </div>
     </section>

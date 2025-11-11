@@ -1,15 +1,28 @@
 import type { FC } from "react";
+import {DownloadIcon} from 'lucide-react'
 import { motion } from "framer-motion";
+import {
+  SiReact,
+  SiVuedotjs,
+  SiTypescript,
+  SiNodedotjs,
+  SiExpress
+} from "react-icons/si";
+
 
 const techIcons = [
-  "/assets/imgs/home-page-2/hero-1/icon-1.svg",
-  "/assets/imgs/home-page-2/hero-1/icon-2.svg",
-  "/assets/imgs/home-page-2/hero-1/icon-3.svg",
-  "/assets/imgs/home-page-2/hero-1/icon-4.svg",
-  "/assets/imgs/home-page-2/hero-1/icon-5.svg",
+  { icon: <SiVuedotjs className="w-8 h-8 text-green-500" />, name: "Vue.js" },
+  { icon: <SiReact className="w-8 h-8 text-blue-500" />, name: "React" },
+  { icon: <SiTypescript className="w-8 h-8 text-blue-600" />, name: "TypeScript" },
+  { icon: <SiNodedotjs className="w-8 h-8 text-green-700" />, name: "Node.js" },
+  { icon: <SiExpress className="w-8 h-8 text-gray-300" />, name: "Express" },
 ];
 
 const Hero: FC = () => {
+  const handleClickHireMe = () => {
+    const section = document.getElementById('contact');
+    if (section) section.scrollIntoView({ behavior: "smooth" });
+  }
   return (
     <section className="relative overflow-hidden py-28 bg-white dark:bg-gray-900">
        <div
@@ -48,16 +61,17 @@ const Hero: FC = () => {
 
           <div className="flex flex-wrap gap-3 mb-6">
             <a
-              href="/ayesha%20asghar.pdf"
+              href="/assets/pdfs/resume.pdf"
               target="_blank"
               download
-              className="btn bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:opacity-90 transition"
+              className="btn inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:opacity-90 transition"
             >
               Download Resume
+              <DownloadIcon />
             </a>
             
-            <motion.a
-      href="#contact"
+    <motion.button
+      onClick={handleClickHireMe}
       className="relative overflow-hidden border-2 border-gray-400 dark:border-purple-800 px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-purple-800 dark:text-gray-100 cursor-pointer bg-purple-600  hover:bg-purple-800"
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
@@ -83,7 +97,7 @@ const Hero: FC = () => {
         whileHover={{ scale: 1.05, opacity: 0.1 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       />
-    </motion.a>
+    </motion.button>
 
 
           </div>
@@ -94,16 +108,13 @@ const Hero: FC = () => {
 
           {/* Tech icons */}
           <div className="flex flex-wrap items-center gap-3">
-            {techIcons.map((icon, i) => (
+            {techIcons.map((tech, i) => (
               <div
                 key={i}
                 className="w-12 h-12 rounded-xl bg-gray-900 p-2 flex items-center justify-center"
+                title={tech.name}
               >
-                <img
-                  src={icon}
-                  alt={`Tech ${i + 1}`}
-                  className="w-8 h-8 object-contain"
-                />
+                {tech.icon}
               </div>
             ))}
             <span className="text-gray-400 text-sm ml-2">...and more</span>
@@ -114,7 +125,7 @@ const Hero: FC = () => {
         <div className="lg:w-1/2 flex justify-center mt-10 lg:mt-0 relative">
           <img
             src="/assets/imgs/hero/hero-1/man.png"
-            alt="Ayesha Asghar"
+            alt="Antoine Canard"
             className="max-h-[500px] object-contain relative z-10"
           />
           <img
