@@ -3,12 +3,14 @@ import SectionKPI from './sections/SectionKPI'
 import SectionContact from './sections/SectionContact'
 import SectionResume from './sections/SectionResume'
 import SectionSkills from './sections/SectionSkills'
+import SectionPortfolio from './sections/SectionPortfolio'
 function App() {
   return (
     <div className=" flex flex-col">
       <SectionHero/>
       <SectionKPI/>
       <SectionSkills />
+      <SectionPortfolio />
       <SectionResume />
       <SectionContact />
     </div>
