@@ -46,14 +46,6 @@ const cardVariants = {
 
 const ViewBlog: React.FC = () => {
   const [search, setSearch] = useState("");
-  const [activeTag, setActiveTag] = useState<string | null>(null);
-
-  // Collect unique tags for filtering
-  const allTags = useMemo(() => {
-    const tags = new Set<string>();
-    blogPosts.forEach((p) => p.tags?.forEach((t) => tags.add(t)));
-    return Array.from(tags);
-  }, []);
 
   // Filter posts
   const filteredPosts = useMemo(() => {
@@ -61,10 +53,9 @@ const ViewBlog: React.FC = () => {
       const matchesSearch =
         post.title.toLowerCase().includes(search.toLowerCase()) ||
         post.excerpt.toLowerCase().includes(search.toLowerCase());
-      const matchesTag = activeTag ? post.tags?.includes(activeTag) : true;
-      return matchesSearch && matchesTag;
+      return matchesSearch;
     });
-  }, [search, activeTag]);
+  }, [search]);
 
   return (
     <section className="relative min-h-screen bg-gray-900 text-white py-28">
@@ -78,9 +69,7 @@ const ViewBlog: React.FC = () => {
         </div>
 
         {/* Filters */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12">
-          {/* Search */}
-          <div className="relative w-full md:w-1/2">
+        <div className="relative w-full md:w-1/2 mb-12 justify-self-center">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
@@ -90,8 +79,6 @@ const ViewBlog: React.FC = () => {
               className="w-full bg-gray-800 border border-gray-700 rounded-xl pl-10 pr-4 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500"
             />
           </div>
-
-        </div>
 
         {/* Blog Grid */}
         <motion.div
@@ -147,11 +134,6 @@ const ViewBlog: React.FC = () => {
             </p>
           )}
         </motion.div>
-
-        {/* Back Button */}
-        <div className="text-center mt-20">
-          <ActionButton text="Back to Home" link="/" />
-        </div>
       </div>
     </section>
   );

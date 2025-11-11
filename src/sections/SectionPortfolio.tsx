@@ -1,5 +1,7 @@
-import React from "react";
-import { motion } from "framer-motion";
+"use client";
+
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Github, Globe } from "lucide-react";
 import ActionButton from "@/components/ActionButton";
 
@@ -38,7 +40,7 @@ const projects: Project[] = [
   {
     title: "VueLanding",
     description:
-      "VueLanding offers a comprehensive suite of modern, responsive, and customizable Vue.js components, enabling developers to build stunning landing pages with ease",
+      "VueLanding offers a comprehensive suite of modern, responsive, and customizable Vue.js components, enabling developers to build stunning landing pages with ease.",
     tech: ["Vue.js", "TypeScript", "Node.js"],
     image: "/assets/imgs/portfolio-3.png",
     link: "https://vuelanding.com/",
@@ -46,27 +48,10 @@ const projects: Project[] = [
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
 const cardVariants = {
-  hidden: { opacity: 0, y: 60 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15,
-      mass: 0.5,
-    },
-  },
+  hidden: { opacity: 0, scale: 0.95, y: 30 },
+  show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } },
+  exit: { opacity: 0, scale: 0.9, y: 30, transition: { duration: 0.3 } },
 };
 
 const SectionPortfolio: React.FC = () => {
@@ -94,92 +79,100 @@ const SectionPortfolio: React.FC = () => {
           </div>
         </div>
 
-        {/* Project Grid with staggered animation */}
+        {/* Project Grid */}
         <motion.div
-          variants={containerVariants}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          viewport={{ once: true, amount: 0.2 }} // triggers when 20% of section is in view
         >
-          {visibleProjects.map((project, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              className="group bg-gray-800 rounded-3xl overflow-hidden border border-gray-700 hover:border-blue-500 transition shadow-lg"
-            >
-              {/* Image */}
-              <div className="relative overflow-hidden h-52">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="object-cover w-full h-full transform group-hover:scale-105 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-              </div>
+          <AnimatePresence>
+            {visibleProjects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                layout
+                variants={cardVariants}
+                className="group bg-gray-800 rounded-3xl overflow-hidden border border-gray-700 hover:border-blue-500 transition shadow-lg cursor-pointer"
+              >
+                {/* Image */}
+                <motion.div layout className="relative overflow-hidden h-52">
+                  <motion.img
+                    src={project.image}
+                    alt={project.title}
+                    className="object-cover w-full h-full transform group-hover:scale-105 transition duration-500"
+                    layout
+                  />
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition"
+                    layout
+                  />
+                </motion.div>
 
-              {/* Content */}
-              <div className="p-6">
-                <h4 className="text-xl font-semibold mb-2">{project.title}</h4>
-                {project.role && (
-                  <p className="text-sm text-blue-400 font-medium mb-3">{project.role}</p>
-                )}
-                <p className="text-gray-400 text-sm mb-4 line-clamp-3 group-hover:line-clamp-none transition-all">
-                  {project.description}
-                </p>
+                {/* Content */}
+                <motion.div layout className="p-6">
+                  <h4 className="text-xl font-semibold mb-2">{project.title}</h4>
+                  {project.role && (
+                    <p className="text-sm text-blue-400 font-medium mb-3">{project.role}</p>
+                  )}
 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="text-xs bg-blue-500/10 text-blue-300 px-2 py-1 rounded-full border border-blue-400/20"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                  <p className="text-gray-400 text-sm mb-4 line-clamp-3 group-hover:line-clamp-none transition-all">
+                    {project.description}
+                  </p>
 
-                {/* Links */}
-                <div className="flex items-center gap-4 flex-wrap">
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition"
-                    >
-                      <Globe className="w-4 h-4" /> View Project
-                    </a>
-                  )}
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition"
-                    >
-                      <Github className="w-4 h-4" /> Source
-                    </a>
-                  )}
-                  {project.storybook && (
-                    <a
-                      href={project.storybook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-purple-400 hover:text-purple-300 transition"
-                    >
-                      Storybook
-                    </a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                  {/* Tech */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tech.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="text-xs bg-blue-500/10 text-blue-300 px-2 py-1 rounded-full border border-blue-400/20"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Links */}
+                  <div className="flex items-center gap-4 flex-wrap">
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition"
+                      >
+                        <Globe className="w-4 h-4" /> View Project
+                      </a>
+                    )}
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition"
+                      >
+                        <Github className="w-4 h-4" /> Source
+                      </a>
+                    )}
+                    {project.storybook && (
+                      <a
+                        href={project.storybook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-purple-400 hover:text-purple-300 transition"
+                      >
+                        Storybook
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
 
         {/* See All Button */}
         <div className="text-center mt-16">
-          <ActionButton text="See all projects"/>
+          <ActionButton text="See all projects" />
         </div>
       </div>
     </section>
