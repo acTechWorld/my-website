@@ -147,5 +147,18 @@
     "description": "Over the years, I’ve honed my skills across both frontend and backend technologies — building scalable web apps, modern UIs, and robust APIs.",
     "frontend": "Frontend",
     "backend": "Backend"
+  },
+  "header": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "contact": "Contact",
+    "toggleMenu": "Toggle mobile menu",
+    "toggleTheme": "Toggle theme",
+    "socials": {
+      "linkedin": "LinkedIn profile",
+      "github": "GitHub profile",
+      "mail": "Send an email"
+    }
   }
 }
