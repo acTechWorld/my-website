@@ -64,40 +64,40 @@ const ViewPortfolio: React.FC = () => {
   }, [search]);
 
   return (
-    <section className="relative min-h-screen bg-gray-900 text-white py-28">
+    <section className="relative min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white py-28">
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold text-blue-400 mb-3">All Projects</h1>
-          <p className="text-gray-300 text-lg">
+          <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-3">All Projects</h1>
+          <p className="text-gray-700 dark:text-gray-300 text-lg">
             A full showcase of my work — from open-source libraries to production apps.
           </p>
         </div>
 
         {/* Search */}
         <div className="relative w-full md:w-1/2 mx-auto mb-12">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-400 w-5 h-5" />
           <input
             type="text"
             placeholder="Search projects..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-gray-800 border border-gray-700 rounded-xl pl-10 pr-4 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+            className="w-full bg-[#edeaf8] dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl pl-10 pr-4 py-2 text-gray-800 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
           />
         </div>
 
         {/* Project Grid */}
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <AnimatePresence>
             {filteredProjects.length > 0 ? (
-              filteredProjects.map((project) => (
+            <AnimatePresence>
+              { filteredProjects.map((project) => (
                 <motion.div
                   key={project.title}
                   layout
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0 }}
-                  className="group bg-gray-800 rounded-3xl overflow-hidden border border-gray-700 hover:border-blue-500 shadow-lg cursor-pointer"
+                  className="group bg-[#edeaf8] dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-blue-500 shadow-lg cursor-pointer"
                 >
                   {/* Image */}
                   <motion.div layout className="relative overflow-hidden h-56">
@@ -113,10 +113,10 @@ const ViewPortfolio: React.FC = () => {
                   <motion.div layout className="p-6">
                     <h4 className="text-xl font-semibold mb-2">{project.title}</h4>
                     {project.role && (
-                      <p className="text-sm text-blue-400 font-medium mb-3">{project.role}</p>
+                      <p className="text-sm text-blue-600 dark:text-blue-400 font-medium mb-3">{project.role}</p>
                     )}
 
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-3 group-hover:line-clamp-none transition-all">
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 group-hover:line-clamp-none transition-all">
                         {project.description}
                     </p>
 
@@ -125,7 +125,7 @@ const ViewPortfolio: React.FC = () => {
                       {project.tech.map((tech, i) => (
                         <span
                           key={i}
-                          className="text-xs bg-blue-500/10 text-blue-300 px-2 py-1 rounded-full border border-blue-400/20"
+                          className="text-xs bg-blue-500/10 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full border border-blue-400/20"
                         >
                           {tech}
                         </span>
@@ -139,7 +139,7 @@ const ViewPortfolio: React.FC = () => {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition"
+                          className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition"
                         >
                           <Globe className="w-4 h-4" /> View Project
                         </a>
@@ -149,7 +149,7 @@ const ViewPortfolio: React.FC = () => {
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition"
+                          className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition"
                         >
                           <Github className="w-4 h-4" /> Source
                         </a>
@@ -159,7 +159,7 @@ const ViewPortfolio: React.FC = () => {
                           href={project.storybook}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-sm font-medium text-purple-400 hover:text-purple-300 transition"
+                          className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition"
                         >
                           Storybook
                         </a>
@@ -167,19 +167,19 @@ const ViewPortfolio: React.FC = () => {
                     </div>
                   </motion.div>
                 </motion.div>
-              ))
+              ))}
+            </AnimatePresence>
             ) : (
               <motion.p
                 key="no-projects"
-                className="text-gray-400 col-span-full text-center py-20"
+                className="text-gray-600 dark:text-gray-400 col-span-full text-center py-20"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
               >
                 No projects found.
               </motion.p>
             )}
-          </AnimatePresence>
+          
         </div>
       </div>
     </section>

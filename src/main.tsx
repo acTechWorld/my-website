@@ -23,7 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/portfolio" element={<ViewPortfolio />} />
 
         {/* Optional: 404 fallback */}
-        <Route path="*" element={<div className="text-center text-white py-32">Page not found</div>} />
+        <Route path="*" element={<div className="text-center text-black dark:text-white py-32">Page not found</div>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

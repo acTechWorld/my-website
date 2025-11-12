@@ -51,15 +51,15 @@ const SectionBlog: React.FC = () => {
   const visiblePosts = blogPosts.slice(0, 3);
 
   return (
-    <section id="blog" className="relative overflow-hidden bg-gray-900 text-white py-8 md:py-24">
+    <section id="blog" className="relative overflow-hidden bg-white dark:bg-gray-900 text-black dark:text-white py-8 md:py-24">
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-end gap-6 mb-16">
           <div>
-            <h3 className="text-3xl font-semibold text-blue-400 mb-3">
+            <h3 className="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-3">
               Latest Blog Posts
             </h3>
-            <p className="text-gray-300 text-lg leading-relaxed">
+            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
               Insights, tutorials, and guides from my latest web development
               experiences.
             </p>
@@ -81,7 +81,7 @@ const SectionBlog: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               variants={cardVariants}
-              className="group h-fit block bg-gray-800 rounded-3xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all shadow-lg"
+              className="group h-fit block bg-[#edeaf8] dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-blue-500 transition-all shadow-lg"
             >
               {/* Image */}
               <div className="relative overflow-hidden h-52">
@@ -95,18 +95,18 @@ const SectionBlog: React.FC = () => {
 
               {/* Content */}
               <div className="p-6">
-                <p className="text-sm text-gray-400 mb-1">{post.date}</p>
-                <h4 className="text-xl font-semibold mb-2 group-hover:text-blue-400 transition">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">{post.date}</p>
+                <h4 className="text-xl font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
                   {post.title}
                 </h4>
 
                 {/* ✨ Smooth expandable excerpt */}
                 <div className="relative overflow-hidden transition-all duration-600 ease-in-out max-h-[4.5rem] group-hover:max-h-[20rem]">
-                  <p className="text-gray-300 text-sm mb-4">
+                  <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
                     {post.excerpt}
                   </p>
                   {/* Gradient fade when clamped */}
-                  <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-gray-800 to-transparent pointer-events-none opacity-100 group-hover:opacity-0 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-[#edeaf8] dark:from-gray-800 to-transparent pointer-events-none opacity-100 group-hover:opacity-0 transition-opacity duration-300"></div>
                 </div>
 
                 {/* Tags */}
@@ -114,7 +114,7 @@ const SectionBlog: React.FC = () => {
                   {post.tags?.map((tag, i) => (
                     <span
                       key={i}
-                      className="text-xs bg-blue-500/10 text-blue-300 px-2 py-1 rounded-full border border-blue-400/20"
+                      className="text-xs bg-blue-500/10 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full border border-blue-400/20"
                     >
                       {tag}
                     </span>
@@ -122,7 +122,7 @@ const SectionBlog: React.FC = () => {
                 </div>
 
                 {/* Read More */}
-                <span className="inline-flex items-center gap-1 text-sm text-blue-400 font-medium group-hover:text-blue-300 transition">
+                <span className="inline-flex items-center gap-1 text-sm text-blue-600 dark:text-blue-400 font-medium group-hover:text-blue-700 dark:group-hover:text-blue-300  transition">
                   Read More <ArrowUpRight className="w-4 h-4" />
                 </span>
               </div>

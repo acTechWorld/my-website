@@ -10,13 +10,13 @@ const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Initialize theme based on localStorage or system preference
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const activeTheme = storedTheme || (prefersDark ? "dark" : "light");
-    setTheme(activeTheme);
-    document.documentElement.classList.toggle("dark", activeTheme === "dark");
-  }, []);
+useEffect(() => {
+  const storedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+  const activeTheme = storedTheme || "dark"; // default = dark
+  setTheme(activeTheme);
+  document.documentElement.classList.toggle("dark", activeTheme === "dark");
+}, []);
+
 
   // Toggle theme handler
   const toggleTheme = () => {
@@ -72,12 +72,12 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-gray-900/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-800 transition-colors duration-300">
+    <header className="fixed top-0 left-0 w-full z-50 bg-[#edeaf8] dark:bg-gray-800/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
         {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden cursor-pointer p-2 rounded-lg border border-gray-700 hover:border-blue-500 text-gray-300 hover:text-blue-400 transition"
+            className="md:hidden cursor-pointer p-2 rounded-lg border border-gray-300 dark:border-gray-700 hover:border-blue-500 text-gray-700 dark:text-gray-300  hover:text-blue-600 dark:hover:text-blue-400 transition"
             aria-label="Toggle mobile menu"
           >
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -85,9 +85,9 @@ const Header: React.FC = () => {
         {/* Logo */}
         <Link
           to="/"
-          className="hidden lg:flex text-2xl font-semibold text-blue-400 hover:text-blue-300 transition"
+          className="hidden lg:flex text-2xl font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition"
         >
-          Antoine CANARD<span className="text-white dark:text-gray-200">.</span>
+          Antoine CANARD<span className="text-gray-800 dark:text-gray-200">.</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -103,8 +103,8 @@ const Header: React.FC = () => {
                 onClick={() => handleNavClick(route.href)}
                 className={`px-2 py-1 text-sm font-medium transition cursor-pointer ${
                   isActive
-                    ? "text-blue-400 border-b-2 border-blue-400"
-                    : "text-gray-300 hover:text-white"
+                    ? "text-blue-600 dark:text-blue-400 border-b-2 border-blue-400"
+                    : "text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
                 }`}
               >
                 {route.name}
@@ -125,7 +125,7 @@ const Header: React.FC = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-blue-400 transition"
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
                 aria-label={social.name}
               >
                 {social.icon}
@@ -136,7 +136,7 @@ const Header: React.FC = () => {
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="p-2 rounded-lg cursor-pointer border border-gray-700 hover:border-blue-500 text-gray-300 hover:text-blue-400 transition-all duration-300"
+            className="p-2 rounded-lg cursor-pointer border border-gray-300 dark:border-gray-700 hover:border-blue-500 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300"
           >
             {theme === "dark" ? (
               <Sun className="w-5 h-5" />
@@ -151,7 +151,7 @@ const Header: React.FC = () => {
         <div
         className={`md:hidden overflow-hidden transition-all duration-300 ease-in ${
             menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        } bg-gray-900/95 border-t border-gray-800`}
+        }  bg-[#edeaf8]/95 dark:bg-gray-800/95 border-t border-gray-200 dark:border-gray-800`}
         >
         <div className="px-6 py-4 space-y-4">
             {/* Navigation Links */}
@@ -166,7 +166,7 @@ const Header: React.FC = () => {
                     key={route.name}
                     onClick={() => handleNavClick(route.href)}
                     className={`text-left cursor-pointer text-base font-medium transition ${
-                    isActive ? "text-blue-400" : "text-gray-300 hover:text-white"
+                    isActive ? "text-blue-600 dark:text-blue-400" : "text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
                     }`}
                 >
                     {route.name}
@@ -176,14 +176,14 @@ const Header: React.FC = () => {
             </nav>
 
             {/* Socials */}
-            <div className="flex gap-5 pt-3 border-t border-gray-700">
+            <div className="flex gap-5 pt-3 border-t border-gray-300 dark:border-gray-700">
             {socials.map((social) => (
                 <a
                 key={social.name}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 cursor-pointer hover:text-blue-400 transition"
+                className="text-gray-700 dark:text-gray-300 cursor-pointer hover:text-blue-600 hover:dark:text-blue-400 transition"
                 aria-label={social.name}
                 >
                 {social.icon}

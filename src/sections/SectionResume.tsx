@@ -171,7 +171,7 @@ const SectionResume: React.FC = () => {
     toggle: () => void
   ) => (
     <div
-      className="group relative p-4 mb-6 rounded-xl bg-gray-900 border border-gray-700 cursor-pointer"
+      className="group relative p-4 mb-6 rounded-xl bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 cursor-pointer"
       onClick={toggle}
     >
       {/* Animated border */}
@@ -182,13 +182,13 @@ const SectionResume: React.FC = () => {
 
       <div className="relative z-10">
         <div className="flex justify-between items-center mb-1">
-          <p className="text-blue-400 font-semibold">{item.year}</p>
+          <p className="text-blue-600 dark:text-blue-400 font-semibold">{item.year}</p>
           {item.type && (
-            <span className="text-gray-400 text-sm italic">{item.type}</span>
+            <span className="text-gray-600 dark:text-gray-400 text-sm italic">{item.type}</span>
           )}
         </div>
         <h5 className="text-lg font-medium">{item.title}</h5>
-        <p className="text-gray-400">{item.subtitle}</p>
+        <p className="text-gray-600 dark:text-gray-400">{item.subtitle}</p>
 
         {item.description && (
           <button
@@ -196,7 +196,7 @@ const SectionResume: React.FC = () => {
               e.stopPropagation();
               toggle();
             }}
-            className="flex items-center gap-2 mt-3 text-blue-400 hover:text-blue-300 text-sm cursor-pointer"
+            className="flex items-center gap-2 mt-3 text-blue-600 dark:text-blue-400 hover:text-blue-700 hover:dark:text-blue-300 text-sm cursor-pointer"
           >
             {isOpen ? (
               <>
@@ -222,7 +222,7 @@ const SectionResume: React.FC = () => {
               className="overflow-hidden"
             >
               <div
-                className="mt-3 text-white text-md border-t border-gray-700 pt-3"
+                className="mt-3 text-black dark:text-white text-md border-t border-gray-300 dark:border-gray-700 pt-3"
                 dangerouslySetInnerHTML={{ __html: item.description }}
               />
             </motion.div>
@@ -235,7 +235,7 @@ const SectionResume: React.FC = () => {
   return (
     <section
       id="resume"
-      className="relative overflow-hidden bg-gray-900 text-white py-8 md:py-24"
+      className="relative overflow-hidden bg-white dark:bg-gray-900 text-black dark:text-white py-8 md:py-24"
     >
       <div
         className="absolute inset-0 bg-cover bg-center invert-50"
@@ -247,10 +247,10 @@ const SectionResume: React.FC = () => {
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-end gap-6">
           <div>
-            <h3 className="text-3xl font-semibold text-blue-400 mb-3">
+            <h3 className="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-3">
               My Resume
             </h3>
-            <p className="text-gray-300 text-lg leading-relaxed">
+            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
               I believe that working hard and learning every day will help me
               improve and satisfy my customers.
             </p>
@@ -261,10 +261,10 @@ const SectionResume: React.FC = () => {
         {/* Resume Cards */}
         <div className="grid lg:grid-cols-2 gap-8 mt-16">
           {/* Education */}
-          <div className="bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-700">
-            <div className="flex items-center gap-3 border-b border-gray-600 pb-3 mb-6">
+          <div className="bg-[#edeaf8] dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-300 dark:border-gray-700">
+            <div className="flex items-center gap-3 border-b border-gray-400 dark:border-gray-600 pb-3 mb-6">
               <div className="bg-blue-500/10 p-3 rounded-xl">
-                <GraduationCap className="w-8 h-8 text-blue-400" />
+                <GraduationCap className="w-8 h-8 text-blue-600 dark:text-blue-400" />
               </div>
               <h3 className="text-2xl font-semibold">Education</h3>
             </div>
@@ -278,10 +278,10 @@ const SectionResume: React.FC = () => {
           </div>
 
           {/* Experience */}
-          <div className="bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-700">
-            <div className="flex items-center gap-3 border-b border-gray-600 pb-3 mb-6">
+          <div className="bg-[#edeaf8] dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-300 dark:border-gray-700">
+            <div className="flex items-center gap-3 border-b border-gray-400 dark:border-gray-600 pb-3 mb-6">
               <div className="bg-blue-500/10 p-3 rounded-xl">
-                <Briefcase className="w-8 h-8 text-blue-400" />
+                <Briefcase className="w-8 h-8 text-blue-600 dark:text-blue-400" />
               </div>
               <h3 className="text-2xl font-semibold">Experience</h3>
             </div>

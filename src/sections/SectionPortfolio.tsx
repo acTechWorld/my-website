@@ -60,9 +60,10 @@ const SectionPortfolio: React.FC = () => {
   return (
     <section
       id="portfolio"
-      className="relative overflow-hidden bg-gray-900 text-white py-8 md:py-24"
+      className="relative overflow-hidden bg-white dark:bg-gray-900 text-black dark:text-white py-8 md:py-24"
       style={{
-        backgroundImage: "url('/assets/imgs/projects/projects-1/background.png')",
+        backgroundImage:
+          "url('/assets/imgs/projects/projects-1/background.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -71,8 +72,10 @@ const SectionPortfolio: React.FC = () => {
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-end gap-6 mb-16">
           <div>
-            <h3 className="text-3xl font-semibold text-blue-400 mb-3">Portfolio</h3>
-            <p className="text-gray-300 text-lg leading-relaxed">
+            <h3 className="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-3">
+              Portfolio
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
               A selection of my recent projects — blending clean design,
               scalable architecture, and modern frontend technologies.
             </p>
@@ -92,7 +95,7 @@ const SectionPortfolio: React.FC = () => {
                 key={project.title}
                 layout
                 variants={cardVariants}
-                className="group bg-gray-800 rounded-3xl overflow-hidden border border-gray-700 hover:border-blue-500 transition shadow-lg cursor-pointer"
+                className="group bg-[#edeaf8] dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-blue-500 transition shadow-lg cursor-pointer"
               >
                 {/* Image */}
                 <motion.div layout className="relative overflow-hidden h-52">
@@ -110,12 +113,16 @@ const SectionPortfolio: React.FC = () => {
 
                 {/* Content */}
                 <motion.div layout className="p-6">
-                  <h4 className="text-xl font-semibold mb-2">{project.title}</h4>
+                  <h4 className="text-xl font-semibold mb-2">
+                    {project.title}
+                  </h4>
                   {project.role && (
-                    <p className="text-sm text-blue-400 font-medium mb-3">{project.role}</p>
+                    <p className="text-sm text-blue-600 dark:text-blue-400 font-medium mb-3">
+                      {project.role}
+                    </p>
                   )}
 
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-3 group-hover:line-clamp-none transition-all">
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 group-hover:line-clamp-none transition-all">
                     {project.description}
                   </p>
 
@@ -124,7 +131,7 @@ const SectionPortfolio: React.FC = () => {
                     {project.tech.map((tech, i) => (
                       <span
                         key={i}
-                        className="text-xs bg-blue-500/10 text-blue-300 px-2 py-1 rounded-full border border-blue-400/20"
+                        className="text-xs bg-blue-500/10 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full border border-blue-400/20"
                       >
                         {tech}
                       </span>
@@ -138,7 +145,7 @@ const SectionPortfolio: React.FC = () => {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 hover:dark:text-blue-300  transition"
                       >
                         <Globe className="w-4 h-4" /> View Project
                       </a>
@@ -148,7 +155,7 @@ const SectionPortfolio: React.FC = () => {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition"
                       >
                         <Github className="w-4 h-4" /> Source
                       </a>
@@ -158,7 +165,7 @@ const SectionPortfolio: React.FC = () => {
                         href={project.storybook}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-purple-400 hover:text-purple-300 transition"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition"
                       >
                         Storybook
                       </a>

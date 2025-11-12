@@ -15,7 +15,7 @@ const techIcons = [
   { icon: <SiReact className="w-8 h-8 text-blue-500" />, name: "React" },
   { icon: <SiTypescript className="w-8 h-8 text-blue-600" />, name: "TypeScript" },
   { icon: <SiNodedotjs className="w-8 h-8 text-green-700" />, name: "Node.js" },
-  { icon: <SiExpress className="w-8 h-8 text-gray-300" />, name: "Express" },
+  { icon: <SiExpress className="w-8 h-8 text-gray-700 dark:text-gray-300" />, name: "Express" },
 ];
 
 const Hero: FC = () => {
@@ -26,7 +26,7 @@ const Hero: FC = () => {
   return (
     <section className="relative overflow-hidden py-28 bg-white dark:bg-gray-900">
        <div
-        className="absolute inset-0 bg-cover bg-center invert-100"
+        className="absolute inset-0 bg-cover bg-center dark:invert-100"
         style={{
           backgroundImage:
              "url('/assets/imgs/background_hero.png')",
@@ -43,7 +43,7 @@ const Hero: FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold my-4 text-gray-100"
+            className="text-4xl md:text-5xl font-bold my-4 text-gray-900 dark:text-gray-100"
           >
             <span className="text-blue-600">{`{Full Stack}`}</span> Website & Web
             App Developer<span className="blink-cursor text-blue-500 ml-1">_</span>
@@ -72,7 +72,7 @@ const Hero: FC = () => {
             
     <motion.button
       onClick={handleClickHireMe}
-      className="relative overflow-hidden border-2 border-gray-400 dark:border-purple-800 px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-purple-800 dark:text-gray-100 cursor-pointer bg-purple-600  hover:bg-purple-800"
+      className="relative overflow-hidden border-2 border-gray-400 dark:border-purple-800 px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-purple-800 text-gray-900 dark:text-gray-100 cursor-pointer bg-purple-600  hover:bg-purple-800"
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       transition={{ type: "spring", stiffness: 300, damping: 15 }}
@@ -86,7 +86,7 @@ const Hero: FC = () => {
       />
 
       {/* Button text */}
-      <span className="relative z-10 flex items-center gap-2">
+      <span className="relative z-10 flex items-center gap-2 text-white">
         Hire me
         <i className="ri-arrow-right-line"></i>
       </span>
@@ -102,7 +102,7 @@ const Hero: FC = () => {
 
           </div>
 
-          <p className="text-gray-500 dark:text-gray-400 mb-4">
+          <p className="text-gray-600 dark:text-gray-400 mb-4">
             +6 years of professional website and web app development
           </p>
 
@@ -111,13 +111,13 @@ const Hero: FC = () => {
             {techIcons.map((tech, i) => (
               <div
                 key={i}
-                className="w-12 h-12 rounded-xl bg-gray-900 p-2 flex items-center justify-center"
+                className="w-12 h-12 rounded-xl bg-[#edeaf8] dark:bg-gray-800 p-2 flex items-center justify-center"
                 title={tech.name}
               >
                 {tech.icon}
               </div>
             ))}
-            <span className="text-gray-400 text-sm ml-2">...and more</span>
+            <span className="text-gray-600 dark:text-gray-400 text-sm ml-2">...and more</span>
           </div>
         </div>
 
