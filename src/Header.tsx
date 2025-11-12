@@ -1,15 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Github, Linkedin, MailIcon, Sun, Moon, Menu, X } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  MailIcon,
+  Sun,
+  Moon,
+  Menu,
+  X,
+  Globe,
+} from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const Header: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
 
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [language, setLanguage] = useState(i18n.language || "en");
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme") as
@@ -19,6 +29,12 @@ const Header: React.FC = () => {
     const activeTheme = storedTheme || "dark"; // default = dark
     setTheme(activeTheme);
     document.documentElement.classList.toggle("dark", activeTheme === "dark");
+
+    const storedLang = localStorage.getItem("lang") || i18n.language || "en";
+    if (storedLang !== i18n.language) {
+      i18n.changeLanguage(storedLang);
+    }
+    setLanguage(storedLang);
   }, []);
 
   const toggleTheme = () => {
@@ -26,6 +42,13 @@ const Header: React.FC = () => {
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
     document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
+
+  const toggleLanguage = () => {
+    const newLang = language === "en" ? "fr" : "en";
+    i18n.changeLanguage(newLang);
+    setLanguage(newLang);
+    localStorage.setItem("lang", newLang);
   };
 
   const mainRoutes = [
@@ -78,7 +101,7 @@ const Header: React.FC = () => {
         {/* Mobile Menu Toggle */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden cursor-pointer p-2 rounded-lg border border-gray-300 dark:border-gray-700 hover:border-blue-500 text-gray-700 dark:text-gray-300  hover:text-blue-600 dark:hover:text-blue-400 transition"
+          className="md:hidden cursor-pointer p-2 rounded-lg border border-gray-300 dark:border-gray-700 hover:border-blue-500 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
           aria-label={t("header.toggleMenu")}
         >
           {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -116,7 +139,7 @@ const Header: React.FC = () => {
           })}
         </nav>
 
-        {/* Right Section — Socials, Theme */}
+        {/* Right Section — Socials, Lang, Theme */}
         <div className="flex items-center gap-4">
           {/* Social Icons */}
           <div className="hidden md:flex items-center gap-4">
@@ -133,6 +156,18 @@ const Header: React.FC = () => {
               </a>
             ))}
           </div>
+
+          {/* Language Toggle */}
+          <button
+            onClick={toggleLanguage}
+            aria-label="Switch language"
+            className="flex items-center cursor-pointer gap-1 px-3 py-1 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300"
+          >
+            <Globe className="w-4 h-4" />
+            <span className="text-sm font-medium uppercase">
+              {language === "en" ? "FR" : "EN"}
+            </span>
+          </button>
 
           {/* Theme Toggle */}
           <button
@@ -193,6 +228,20 @@ const Header: React.FC = () => {
                 {social.icon}
               </a>
             ))}
+          </div>
+
+          {/* Language Toggle in Mobile */}
+          <div className="pt-3 border-t border-gray-300 dark:border-gray-700">
+            <button
+              onClick={toggleLanguage}
+              aria-label="Switch language"
+              className="flex items-center gap-2 cursor-pointer text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition"
+            >
+              <Globe className="w-5 h-5" />
+              <span className="uppercase">
+                {language === "en" ? "FR" : "EN"}
+              </span>
+            </button>
           </div>
         </div>
       </div>

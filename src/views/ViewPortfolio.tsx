@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 interface Project {
   title: string;
   role?: string;
-  description: string;
   tech: string[];
   image: string;
   link?: string;

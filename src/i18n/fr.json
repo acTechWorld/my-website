@@ -1,0 +1,164 @@
+{
+  "hero": {
+    "greeting": "👋 Bonjour, <br/> je suis Antoine Canard",
+    "titleHighlight": "{Full Stack}",
+    "titleSuffix": "Développeur de sites web et d’applications web",
+    "description": "Fort d’une expertise dans des technologies de pointe telles que <react /> , <vue /> , <node /> , <express /> et <postgressql /> — je conçois des solutions web à la fois innovantes et robustes.",
+    "downloadResume": "Télécharger le CV",
+    "hireMe": "Me contacter",
+    "experience": "+6 ans d’expérience professionnelle en développement web et applications web",
+    "techMore": "...et bien plus"
+  },
+  "blog": {
+    "headerTitle": "Derniers articles de blog",
+    "headerDescription": "Aperçus, tutoriels et guides issus de mes dernières expériences en développement web.",
+    "readMore": "Lire la suite",
+    "seeAllPosts": "Voir tous les articles",
+    "posts": [
+      {
+        "title": "Comment j’ai créé un composant d’onboarding personnalisé avec Vue.js",
+        "date": "20 nov. 2024",
+        "excerpt": "Offrir une bonne expérience d’onboarding utilisateur est essentiel pour engager les nouveaux utilisateurs. Plutôt que d’utiliser une solution préfabriquée, j’ai décidé de créer mon propre composant d’onboarding avec Vue.js. Dans cet article, je vous explique ma démarche, les défis rencontrés et comment je les ai surmontés.",
+        "tags": ["Vue.js", "Frontend", "Open Source"],
+        "link": "https://medium.com/p/8dbf1e588b9b",
+        "image": "/assets/imgs/blog-1.png"
+      },
+      {
+        "title": "Créer un espace de travail collaboratif avec VueDragPlayground et Vue 3",
+        "date": "15 oct. 2025",
+        "excerpt": "Dans le monde d’aujourd’hui, les outils collaboratifs sont plus importants que jamais. Que ce soit pour le brainstorming, la gestion de projets ou la conception d’interfaces, disposer d’un espace de travail numérique partagé est essentiel pour améliorer la productivité et la créativité. Dans cet article, nous verrons comment créer un espace collaboratif avec VueDragPlayground, une puissante bibliothèque Vue 3 offrant des fonctionnalités de glisser-déposer, redimensionnement et rotation, associées aux capacités réactives de Vue 3.",
+        "tags": ["Vue.js", "Développement Web", "Onboarding Utilisateur"],
+        "link": "/blog/vue3-composition-api-tips",
+        "image": "/assets/imgs/blog-2.png"
+      }
+    ]
+  },
+  "contact": {
+    "headerTitle": "Entrons en contact",
+    "headerDescription": "Je suis toujours enthousiaste à l’idée de relever de nouveaux défis et de collaborer avec des esprits innovants. Si vous avez un projet en tête ou souhaitez simplement échanger autour du design, n’hésitez pas à me contacter !",
+    "phone": "Téléphone",
+    "email": "Email",
+    "github": "GitHub",
+    "location": "Localisation",
+    "linkedin": "LinkedIn",
+    "formTitle": "Laisser un message",
+    "formName": "Votre nom",
+    "formNamePlaceholder": "Jean Dupont",
+    "formEmail": "Adresse e-mail",
+    "formEmailPlaceholder": "canard.antoine@gmail.com",
+    "formPhone": "Votre téléphone",
+    "formPhonePlaceholder": "+33 601090720",
+    "formSubject": "Sujet",
+    "formSubjectPlaceholder": "Je souhaite vous contacter pour...",
+    "formMessage": "Message",
+    "formMessagePlaceholder": "Votre message ici...",
+    "sendMessage": "Envoyer le message",
+    "sending": "Envoi...",
+    "sent": "Envoyé !"
+  },
+  "kpi": {
+    "experienceYears": {
+      "label1": "Années",
+      "label2": "d’expérience"
+    },
+    "projectsCompleted": {
+      "label1": "Projets",
+      "label2": "réalisés"
+    },
+    "happyClients": {
+      "label1": "Clients",
+      "label2": "satisfaits"
+    },
+    "technologiesMastered": {
+      "label1": "Technologies",
+      "label2": "maîtrisées"
+    }
+  },
+  "portfolio": {
+    "headerTitle": "Portfolio",
+    "headerDescription": "Une sélection de mes projets récents — alliant design soigné, architecture évolutive et technologies frontend modernes.",
+    "viewProject": "Voir le projet",
+    "source": "Code source",
+    "storybook": "Storybook",
+    "seeAllProjects": "Voir tous les projets",
+    "projects": {
+      "vueDragPlayground": {
+        "title": "VueDragPlayground",
+        "description": "VueDragPlayground est une bibliothèque Vue 3 polyvalente conçue pour créer des interfaces utilisateur dynamiques et interactives avec des fonctionnalités de glisser-déposer, redimensionnement et rotation."
+      },
+      "vueOnboardingTour": {
+        "title": "VueOnboardingTour",
+        "description": "VueOnboardingTour est un composant Vue.js permettant de créer des parcours d’onboarding guidés, étape par étape, pour aider les utilisateurs à naviguer intuitivement dans votre application."
+      },
+      "vueLanding": {
+        "title": "VueLanding",
+        "description": "VueLanding propose une suite complète de composants Vue.js modernes, réactifs et personnalisables, permettant aux développeurs de créer facilement de superbes pages d’accueil."
+      }
+    }
+  },
+  "resume": {
+    "headerTitle": "Mon CV",
+    "headerDescription": "Je crois que le travail acharné et l’apprentissage continu sont la clé pour progresser et satisfaire mes clients.",
+    "getInTouch": "Me contacter",
+    "education": "Formation",
+    "experience": "Expérience",
+    "showDetails": "Afficher les détails",
+    "hideDetails": "Masquer les détails",
+
+    "education1": {
+      "year": "2015–2019",
+      "type": "",
+      "title": "Master 2, Ingénierie des Systèmes d’Information",
+      "subtitle": "ISEP",
+      "description": "<b><u>Majeures</u></b> : Architecture des systèmes d’information, Cybersécurité, Ingénierie logicielle et technologies web<br><b><u>Langages étudiés</u></b> : Python, Java, Js, Html, Css, SQL, PHP, Git<br><b><u>Frameworks étudiés</u></b> : React.js, Spring Boot, Vue.js, Node.js"
+    },
+
+    "experience1": {
+      "year": "janvier 2024 - aujourd’hui",
+      "type": "Freelance",
+      "title": "Développeur Frontend Senior - Vue.js | React.js",
+      "subtitle": "Amundi",
+      "description": "<b><u>Contexte</u></b> :<br><p style='margin-left: 16px'>En tant que freelance, j’ai accompagné Amundi dans l’amélioration de leurs plateformes d’investissement destinées aux conseillers bancaires.</p><br><b><u>Tâches réalisées</u></b> :<br><p style='margin-left: 16px'>- Création d’une nouvelle plateforme web pour la saisie d’ordres bancaires<br>- Amélioration des plateformes clients, développement de nouvelles fonctionnalités frontend et correction de bugs<br>- Optimisation des plateformes d’administration, ajout de nouvelles fonctionnalités frontend et résolution d’anomalies<br>- Création d’une bibliothèque de composants graphiques frontend utilisée sur plusieurs applications internes<br>- PoC IA : développement d’une interface web intégrant une IA pour des usages métier internes</p><br><b><u>Environnement technique :</u></b><br><p style='margin-left: 16px'>- Frontend : Vue.js 2 / Vue.js 3 / Typescript / React<br>- Backend : PHP Symfony<br>- Maquettes et prototypes : Figma / Zeroheight<br>- Tests : Cypress / Vitest<br>- Qualité du code : SonarQube<br>- CI/CD : Jenkins / Argo CD<br>- Suivi de tickets : Jira</p>"
+    },
+    "experience2": {
+      "year": "septembre 2021 - décembre 2023",
+      "type": "Temps plein (Consulting) / Freelance",
+      "title": "Lead Développeur Fullstack Web - Vue.js | Java Spring Boot",
+      "subtitle": "Système U",
+      "description": "<b><u>Contexte</u></b> :<br><p style='margin-left: 16px'>En tant que consultant puis freelance, j’ai accompagné Système U dans la modernisation de leur suite d’applications de la chaîne logistique.<br>Au sein de la division UIris, j’ai travaillé dans une équipe composée de 4 développeurs, 2 chefs de projet, 3 Product Owners et 1 designer UX/UI.<br>Pendant deux ans, nous avons conçu et développé trois nouvelles applications utilisées dans les entrepôts logistiques du groupe.</p><br><b><u>Tâches réalisées</u></b> :<br><p style='margin-left: 16px'>- Conception, développement, déploiement et maintenance de trois applications PWA frontend en Vue.js<br>- Développement et maintenance d’applications Android TWA en Java<br>- Développement de microservices backend en Java Spring Boot connectés à des bases IBMi<br>- Encadrement et mentorat d’une équipe de trois développeurs juniors<br>- Création de suites de tests unitaires et d’intégration<br>- Formation des équipes sur Vue.js et Java Spring Boot<br>- Mise en place d’un PoC intégrant Kafka<br>- Contribution à la migration cloud GCP et intégration d’une base Firestore<br>- Rédaction et maintien de la documentation technique</p><br><b><u>Environnement technique :</u></b><br><p style='margin-left: 16px'>- Frontend : Vue.js 2 / Vue.js 3 / TypeScript<br>- Backend : Java (Spring Boot)<br>- Bases de données : PostgreSQL / IBMi / Firestore<br>- Cloud : Google Cloud Platform (GCP)<br>- Design & prototypage : Figma<br>- Qualité du code : SonarQube<br>- CI/CD : Jenkins<br>- Monitoring : Grafana, ELK / APM<br>- Gestion de projet : Jira</p>"
+    },
+    "experience3": {
+      "year": "septembre 2020 – septembre 2021",
+      "type": "Temps plein (Consulting)",
+      "title": "Développeur Full Stack Web - React.js / Node.js",
+      "subtitle": "L'Oréal",
+      "description": "<b><u>Contexte</u></b> :<br><p style='margin-left: 16px'>En tant que consultant en développement web, j’ai intégré l’équipe France Data de L’Oréal, où j’ai participé au développement de nouvelles fonctionnalités pour la plateforme marketing Adobe Campaign et à l’amélioration de plusieurs sites e-commerce du groupe.<br>J’ai travaillé au sein d’une équipe de 5 développeurs, 3 chefs de projet et 2 Product Owners, suivant une méthodologie Agile SCRUM. La communication de l’équipe se faisait principalement en anglais.</p><br><b><u>Tâches réalisées</u></b> :<br><p style='margin-left: 16px'>- Développement de nouvelles fonctionnalités sur Adobe Campaign<br>- Création de pages web React.js intégrées à Adobe Campaign<br>- Intégration de nouveaux flux de données clients dans le CRM Adobe Campaign<br>- Création de tests unitaires et d’intégration automatisés<br>- Rédaction et maintenance de la documentation technique<br>- Formation des équipes internes sur Adobe Campaign</p><br><b><u>Environnement technique :</u></b><br><p style='margin-left: 16px'>- Frontend : React.js / TypeScript<br>- CRM : Adobe Campaign<br>- Cloud : Google Cloud Platform (GCP)<br>- Design & prototypage : Figma</p>"
+    },
+    "experience4": {
+      "year": "janvier 2020 – septembre 2021",
+      "type": "Temps plein",
+      "title": "Développeur Full Stack Web - React.js / Node.js",
+      "subtitle": "Velvet Consulting",
+      "description": "<b><u>Contexte</u></b> :<br><p style='margin-left: 16px'>Au sein de l’équipe de développement interne de Velvet Consulting, j’ai participé à la création d’une application web pour l’ESSEC Business School.<br>Nous étions une équipe de 3 développeurs, 1 Product Owner et 1 chef de projet, travaillant en méthodologie Agile SCRUM.<br>L’application développée était un portail interne destiné aux étudiants et enseignants de l’école, permettant le suivi des cours, le partage d’informations et la diffusion d’actualités.</p><br><b><u>Tâches réalisées</u></b> :<br><p style='margin-left: 16px'>- Développement du nouveau portail interne avec React.js<br>- Amélioration du backend basé sur le CMS WordPress<br>- Implémentation de tests unitaires et d’intégration automatisés</p><br><b><u>Environnement technique :</u></b><br><p style='margin-left: 16px'>- Frontend : React.js / TypeScript<br>- CMS : WordPress<br>- Design & prototypage : Figma<br>- Gestion de projet : Jira</p>"
+    }
+  },
+  "skills": {
+    "title": "Compétences techniques",
+    "description": "Au fil des années, j’ai perfectionné mes compétences sur le frontend comme sur le backend — en créant des applications web évolutives, des interfaces modernes et des API robustes.",
+    "frontend": "Frontend",
+    "backend": "Backend"
+  },
+  "header": {
+    "home": "Accueil",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "contact": "Contact",
+    "toggleMenu": "Basculer le menu mobile",
+    "toggleTheme": "Changer le thème",
+    "socials": {
+      "linkedin": "Profil LinkedIn",
+      "github": "Profil GitHub",
+      "mail": "Envoyer un e-mail"
+    }
+  }
+}
