@@ -110,6 +110,7 @@ const SectionPortfolio: React.FC = () => {
               <motion.a
                 key={project.key}
                 href={project.link}
+                target="blank"
                 layout
                 custom={index % 3}
                 variants={cardVariants}
