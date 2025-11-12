@@ -90,14 +90,14 @@ const ViewPortfolio: React.FC = () => {
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           <AnimatePresence>
             {filteredProjects.length > 0 ? (
-              filteredProjects.map((project, index) => (
+              filteredProjects.map((project) => (
                 <motion.div
                   key={project.title}
                   layout
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0 }}
-                  className="group bg-gray-800 rounded-3xl overflow-hidden border border-gray-700 hover:border-blue-500 transition shadow-lg cursor-pointer"
+                  className="group bg-gray-800 rounded-3xl overflow-hidden border border-gray-700 hover:border-blue-500 shadow-lg cursor-pointer"
                 >
                   {/* Image */}
                   <motion.div layout className="relative overflow-hidden h-56">

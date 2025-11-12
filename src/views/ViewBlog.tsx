@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Search } from "lucide-react";
-import ActionButton from "@/components/ActionButton";
 
 interface BlogPost {
   title: string;
@@ -34,26 +33,18 @@ const blogPosts: BlogPost[] = [
   // Add more posts here...
 ];
 
-const containerVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } },
-};
-
 const ViewBlog: React.FC = () => {
   const [search, setSearch] = useState("");
 
-  // Filter posts
+  // Filter posts based on search input
   const filteredPosts = useMemo(() => {
     return blogPosts.filter((post) => {
-      const matchesSearch =
-        post.title.toLowerCase().includes(search.toLowerCase()) ||
-        post.excerpt.toLowerCase().includes(search.toLowerCase());
-      return matchesSearch;
+      const query = search.toLowerCase();
+      return (
+        post.title.toLowerCase().includes(query) ||
+        post.excerpt.toLowerCase().includes(query) ||
+        post.tags?.some((tag) => tag.toLowerCase().includes(query))
+      );
     });
   }, [search]);
 
@@ -68,75 +59,90 @@ const ViewBlog: React.FC = () => {
           </p>
         </div>
 
-        {/* Filters */}
-        <div className="relative w-full md:w-1/2 mb-12 justify-self-center">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Search posts..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-gray-800 border border-gray-700 rounded-xl pl-10 pr-4 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500"
-            />
-          </div>
+        {/* Search Input */}
+        <div className="relative w-full md:w-1/2 mx-auto mb-12">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <input
+            type="text"
+            placeholder="Search posts..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full bg-gray-800 border border-gray-700 rounded-xl pl-10 pr-4 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+          />
+        </div>
 
-        {/* Blog Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
-        >
-          {filteredPosts.length > 0 ? (
-            filteredPosts.map((post, index) => (
-              <motion.a
-                key={index}
-                href={post.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                variants={cardVariants}
-                className="group block bg-gray-800 rounded-3xl overflow-hidden border border-gray-700 hover:border-blue-500 transition shadow-lg"
+        {/* Blog Grid with smooth animated filtering */}
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <AnimatePresence>
+            {filteredPosts.length > 0 ? (
+              filteredPosts.map((post) => (
+                <motion.a
+                  key={post.title}
+                  href={post.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  layout
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                  className="group block bg-gray-800 rounded-3xl overflow-hidden border border-gray-700 hover:border-blue-500 shadow-lg"
+                >
+                  {/* Image */}
+                  <motion.div layout className="relative overflow-hidden h-56">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="object-cover w-full h-full transform group-hover:scale-105 transition duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition" />
+                  </motion.div>
+
+                  {/* Content */}
+                  <motion.div layout className="p-6">
+                    <p className="text-sm text-gray-400 mb-1">{post.date}</p>
+                    <h4 className="text-xl font-semibold mb-2 group-hover:text-blue-400 transition">
+                      {post.title}
+                    </h4>
+                    <p className="text-gray-400 text-sm mb-4 line-clamp-3 group-hover:line-clamp-none transition-all duration-300">
+                      {post.excerpt}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {post.tags?.map((tag, i) => (
+                        <span
+                          key={i}
+                          className="text-xs bg-blue-500/10 text-blue-300 px-2 py-1 rounded-full border border-blue-400/20"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Read More */}
+                    <span className="inline-flex items-center gap-1 text-sm text-blue-400 font-medium group-hover:text-blue-300 transition">
+                      Read More <ArrowUpRight className="w-4 h-4" />
+                    </span>
+                  </motion.div>
+                </motion.a>
+              ))
+            ) : (
+              <motion.p
+                key="no-posts"
+                className="text-gray-400 col-span-full text-center py-20"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
               >
-                <div className="relative overflow-hidden h-56">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="object-cover w-full h-full transform group-hover:scale-105 transition duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <p className="text-sm text-gray-400 mb-1">{post.date}</p>
-                  <h4 className="text-xl font-semibold mb-2 group-hover:text-blue-400 transition">
-                    {post.title}
-                  </h4>
-                  <p className="text-gray-300 text-sm line-clamp-3 mb-4">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {post.tags?.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="text-xs bg-blue-500/10 text-blue-300 px-2 py-1 rounded-full border border-blue-400/20"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <span className="inline-flex items-center gap-1 text-sm text-blue-400 font-medium group-hover:text-blue-300 transition">
-                    Read More <ArrowUpRight className="w-4 h-4" />
-                  </span>
-                </div>
-              </motion.a>
-            ))
-          ) : (
-            <p className="text-gray-400 col-span-full text-center py-20">
-              No posts found.
-            </p>
-          )}
-        </motion.div>
+                No posts found.
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );
 };
+
 
 export default ViewBlog;

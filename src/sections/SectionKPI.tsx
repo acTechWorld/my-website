@@ -27,7 +27,7 @@ const SectionKPI: React.FC = () => {
       className="relative overflow-hidden z-0 py-16 dark:bg-gray-800"
     >
       <div className="container mx-auto px-4">
-        <div className="flex flex-wrap items-center justify-between gap-8">
+        <div className="flex flex-wrap flex-col lg:flex-row items-center justify-between gap-8">
           {kpis.map((item, index) => (
             <div
               key={index}

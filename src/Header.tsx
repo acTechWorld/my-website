@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Github, Linkedin, MailIcon } from "lucide-react";
+import { Github, Linkedin, MailIcon, Sun, Moon, Menu, X } from "lucide-react";
 
 const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Initialize theme based on localStorage or system preference
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const activeTheme = storedTheme || (prefersDark ? "dark" : "light");
+    setTheme(activeTheme);
+    document.documentElement.classList.toggle("dark", activeTheme === "dark");
+  }, []);
+
+  // Toggle theme handler
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
 
   const mainRoutes = [
     { name: "Home", href: "/" },
@@ -31,16 +51,15 @@ const Header: React.FC = () => {
     },
   ];
 
-  // Handle "Contact" link to scroll properly
+  // Handle navigation for contact scroll
   const handleNavClick = (href: string) => {
+    setMenuOpen(false); // Close menu on click
     if (href.startsWith("/#")) {
       const sectionId = href.replace("/#", "");
       if (location.pathname === "/") {
-        // Already on homepage → just scroll
         const section = document.getElementById(sectionId);
         if (section) section.scrollIntoView({ behavior: "smooth" });
       } else {
-        // Navigate home first, then scroll after render
         navigate("/");
         setTimeout(() => {
           const section = document.getElementById(sectionId);
@@ -53,17 +72,25 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800">
+    <header className="fixed top-0 left-0 w-full z-50 bg-gray-900/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-800 transition-colors duration-300">
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
+        {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden cursor-pointer p-2 rounded-lg border border-gray-700 hover:border-blue-500 text-gray-300 hover:text-blue-400 transition"
+            aria-label="Toggle mobile menu"
+          >
+            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         {/* Logo */}
         <Link
           to="/"
-          className="text-2xl font-semibold text-blue-400 hover:text-blue-300 transition"
+          className="hidden lg:flex text-2xl font-semibold text-blue-400 hover:text-blue-300 transition"
         >
-          Antoine CANARD<span className="text-white">.</span>
+          Antoine CANARD<span className="text-white dark:text-gray-200">.</span>
         </Link>
 
-        {/* Navigation */}
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           {mainRoutes.map((route) => {
             const isActive =
@@ -86,22 +113,85 @@ const Header: React.FC = () => {
           })}
         </nav>
 
-        {/* Social Icons */}
+        {/* Right Section — Socials, Theme, Mobile Toggle */}
         <div className="flex items-center gap-4">
-          {socials.map((social) => (
-            <a
-              key={social.name}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-blue-400 transition"
-              aria-label={social.name}
-            >
-              {social.icon}
-            </a>
-          ))}
+          
+
+          {/* Social Icons (hidden on mobile) */}
+          <div className="hidden md:flex items-center gap-4">
+            {socials.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-blue-400 transition"
+                aria-label={social.name}
+              >
+                {social.icon}
+              </a>
+            ))}
+          </div>
+         {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="p-2 rounded-lg cursor-pointer border border-gray-700 hover:border-blue-500 text-gray-300 hover:text-blue-400 transition-all duration-300"
+          >
+            {theme === "dark" ? (
+              <Sun className="w-5 h-5" />
+            ) : (
+              <Moon className="w-5 h-5" />
+            )}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+        <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in ${
+            menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        } bg-gray-900/95 border-t border-gray-800`}
+        >
+        <div className="px-6 py-4 space-y-4">
+            {/* Navigation Links */}
+            <nav className="flex flex-col space-y-3">
+            {mainRoutes.map((route) => {
+                const isActive =
+                location.pathname === route.href ||
+                (route.href.includes("#") && location.hash === route.href);
+
+                return (
+                <button
+                    key={route.name}
+                    onClick={() => handleNavClick(route.href)}
+                    className={`text-left cursor-pointer text-base font-medium transition ${
+                    isActive ? "text-blue-400" : "text-gray-300 hover:text-white"
+                    }`}
+                >
+                    {route.name}
+                </button>
+                );
+            })}
+            </nav>
+
+            {/* Socials */}
+            <div className="flex gap-5 pt-3 border-t border-gray-700">
+            {socials.map((social) => (
+                <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 cursor-pointer hover:text-blue-400 transition"
+                aria-label={social.name}
+                >
+                {social.icon}
+                </a>
+            ))}
+            </div>
+        </div>
+        </div>
     </header>
   );
 };

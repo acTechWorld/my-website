@@ -235,7 +235,7 @@ const SectionResume: React.FC = () => {
   return (
     <section
       id="resume"
-      className="relative overflow-hidden bg-gray-900 text-white py-24"
+      className="relative overflow-hidden bg-gray-900 text-white py-8 md:py-24"
     >
       <div
         className="absolute inset-0 bg-cover bg-center invert-50"

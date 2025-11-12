@@ -159,7 +159,7 @@ const SkillSection: React.FC = () => {
   );
 
   return (
-    <section id="skills" className="bg-white dark:bg-gray-900 text-white py-24">
+    <section id="skills" className="bg-white dark:bg-gray-900 text-white py-8 md:py-24">
       <div className="container mx-auto px-4">
         <h3 className="text-3xl font-semibold text-blue-400 mb-4">
           Technical Skills

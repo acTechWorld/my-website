@@ -51,7 +51,7 @@ const SectionBlog: React.FC = () => {
   const visiblePosts = blogPosts.slice(0, 3);
 
   return (
-    <section id="blog" className="relative overflow-hidden bg-gray-900 text-white py-24">
+    <section id="blog" className="relative overflow-hidden bg-gray-900 text-white py-8 md:py-24">
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-end gap-6 mb-16">

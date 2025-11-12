@@ -75,7 +75,7 @@ const SectionContact: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden dark:bg-gray-800 text-white py-24"
+      className="relative overflow-hidden dark:bg-gray-800 text-white py-8 md:py-24"
     >
       <div className="container mx-auto px-4 relative z-10">
         <h3 className="text-3xl font-semibold text-blue-400 mb-4">
@@ -87,9 +87,9 @@ const SectionContact: React.FC = () => {
           about design, feel free to reach out!
         </p>
 
-        <div className="flex gap-12">
+        <div className="flex gap-12 flex-col-reverse lg:flex-row">
           {/* Left side — contact info */}
-          <div className="flex flex-col space-y-6 w-full lg:w-1/3">
+          <div className="grid p-4 md:p-0 md:grid-cols-2 lg:flex flex-wrap flex-col self-center gap-6 lg:w-1/3 overflow-hidden">
             {contactItems.map((item, index) => (
               <a
                 key={index}

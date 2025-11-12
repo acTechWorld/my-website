@@ -60,7 +60,7 @@ const SectionPortfolio: React.FC = () => {
   return (
     <section
       id="portfolio"
-      className="relative overflow-hidden bg-gray-900 text-white py-24"
+      className="relative overflow-hidden bg-gray-900 text-white py-8 md:py-24"
       style={{
         backgroundImage: "url('/assets/imgs/projects/projects-1/background.png')",
         backgroundSize: "cover",
