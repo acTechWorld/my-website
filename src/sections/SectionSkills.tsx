@@ -18,6 +18,7 @@ import {
   SiPhp,
   SiSymfony,
 } from "react-icons/si";
+import { useTranslation } from "react-i18next";
 
 interface Skill {
   name: string;
@@ -127,6 +128,8 @@ const backendSkills: Skill[] = [
 ];
 
 const SkillSection: React.FC = () => {
+  const { t } = useTranslation();
+
   const maxYears = Math.max(
     ...[...frontendSkills, ...backendSkills].map((s) => s.years)
   );
@@ -167,19 +170,17 @@ const SkillSection: React.FC = () => {
     >
       <div className="container mx-auto px-4">
         <h3 className="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-4">
-          Technical Skills
+          {t("skills.title")}
         </h3>
         <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-12">
-          Over the years, I’ve honed my skills across both frontend and backend
-          technologies — building scalable web apps, modern UIs, and robust
-          APIs.
+          {t("skills.description")}
         </p>
 
         <div className="grid md:grid-cols-2 gap-16">
           {/* Frontend */}
           <div>
             <h4 className="text-2xl font-semibold text-blue-600 dark:text-blue-400 mb-6 flex items-center gap-2">
-              🎨 Frontend
+              🎨 {t("skills.frontend")}
             </h4>
             <div className="space-y-6">{frontendSkills.map(renderSkill)}</div>
           </div>
@@ -187,7 +188,7 @@ const SkillSection: React.FC = () => {
           {/* Backend */}
           <div>
             <h4 className="text-2xl font-semibold text-blue-600 dark:text-blue-400 mb-6 flex items-center gap-2">
-              ⚙️ Backend
+              ⚙️ {t("skills.backend")}
             </h4>
             <div className="space-y-6">{backendSkills.map(renderSkill)}</div>
           </div>

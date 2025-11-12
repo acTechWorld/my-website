@@ -2,169 +2,33 @@ import React, { useState } from "react";
 import { GraduationCap, Briefcase, ChevronDown, ChevronUp } from "lucide-react";
 import ActionButton from "@/components/ActionButton";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface ResumeItem {
-  year: string;
-  title: string;
-  subtitle: string;
-  type?: string;
-  description?: string;
+  key: string; // translation key
 }
 
-const educationData: ResumeItem[] = [
-  {
-    year: "2015–2019",
-    title: "Master 2, Information Systems Engineer",
-    subtitle: "ISEP",
-    description: `<b><u>Majors</u></b>: Information Systems Architecture, Cybersecurity, Engineering Software and web technologies<br>
-<b><u>Studied programming languages</u></b>: Python, Java, Js, Html, Css, SQL, PHP, Git<br>
-<b><u>Studied frameworks</u></b>: React.js, Spring boot, Vue.js, Node.js`,
-  },
-];
+const educationData: ResumeItem[] = [{ key: "education1" }];
 
 const experienceData: ResumeItem[] = [
-  {
-    year: "january 2024 - now",
-    title: "Senior Web Frontend Developer - Vue.js | React.js",
-    subtitle: "Amundi",
-    type: "Freelance",
-    description: `
-    <b><u>Context</u></b>:<br>
-        <p style="margin-left: 16px">As a freelancer, I supported Amundi in improving their investment web platforms intended for banking advisor</p><br>
-
-    <b><u>Tasks carried out</u></b>:<br>
-        <p style="margin-left: 16px">
-        - Creation of a new web platform for placing banking orders<br>
-        - Improvement of client web platforms, development of new frontend features and fixed existing bugs<br>
-        - Improvement of web administration platforms, development of new frontend functionalities and fixing existing bugs<br>
-        - Creation of a library of graphic frontend components, used internally on several applications<br>
-        - PoC Al: creation of a web interface incorporating a Al integration for internal business use
-        </p><br>
-
-    <b><u>Technical environment:</u></b>:<br>
-        <p style="margin-left: 16px">
-        - Frontend: Vue.js 2 / Vue.js 3 / Typescript / React<br>
-        - Backend: PHP Symfony<br>
-        - Models and prototypes: Figma / Zeroheight<br>
-        - Tests: Cypress / Vitest<br>
-        - Quality code: SonarQube<br>
-        - CI/CD: Jenkins / argo CD<br>
-        - Tickets: Jira
-        </p>
-    `,
-  },
-  {
-    year: "September 2021 - December 2023",
-    title: "Lead Fullstack Web Developer - Vue.js | Java Spring Boot",
-    subtitle: "System U",
-    type: "Full-time (Consulting) / Freelance",
-    description: `
-    <b><u>Context</u></b>:<br>
-        <p style="margin-left: 16px">
-        As a consultant and later a freelancer, I supported Système U in modernizing their suite of supply chain applications.<br>
-        Within the UIris division, I was part of a team composed of 4 developers, 2 project managers, 3 Product Owners, and 1 UX/UI designer.<br>
-        Over the course of two years, we worked under a waterfall methodology to design and build three new applications used in the group’s logistics warehouses.
-        </p><br>
-
-    <b><u>Tasks carried out</u></b>:<br>
-        <p style="margin-left: 16px">
-        - Designed, developed, deployed, and maintained three new PWA frontend applications built with Vue.js.<br>
-        - Designed, developed, deployed, and maintained three Android mobile APK TWA applications using Java.<br>
-        - Designed, developed, deployed, and maintained nine backend microservices in Java Spring Boot connected to IBMi databases.<br>
-        - Led and mentored a team of three junior developers.<br>
-        - Developed automated unit and integration test suites.<br>
-        - Trained teams on Vue.js and Java Spring Boot technologies.<br>
-        - Created a proof of concept (PoC) integrating Kafka messaging systems.<br>
-        - Contributed to the GCP cloud migration of several components and integrated a Firestore database.<br>
-        - Authored and maintained technical documentation.
-        </p><br>
-
-    <b><u>Technical environment:</u></b>:<br>
-        <p style="margin-left: 16px">
-        - Frontend: Vue.js 2 / Vue.js 3 / TypeScript<br>
-        - Backend: Java (Spring Boot)<br>
-        - Databases: PostgreSQL / IBMi / Firestore<br>
-        - Cloud: Google Cloud Platform (GCP)<br>
-        - Design & prototyping: Figma<br>
-        - Code quality: SonarQube<br>
-        - CI/CD: Jenkins<br>
-        - Monitoring: Grafana, ELK / APM<br>
-        - Project management: Jira
-        </p>
-    `,
-  },
-  {
-    year: "September 2020 – September 2021",
-    title: "Full Stack Web Developer - React.js / Node.js",
-    subtitle: "L'Oréal",
-    type: "Full-time (Consulting)",
-    description: `
-        <b><u>Context</u></b>:<br>
-            <p style="margin-left: 16px">
-            As a web development consultant, I joined L’Oréal’s France Data team, where I contributed to the development of new features integrated with the Adobe Campaign marketing tool and to the enhancement of various e-commerce websites for the group’s brands.<br>
-            I worked within a team of 5 developers, 3 project managers, and 2 Product Owners, following an Agile SCRUM methodology. Team communication was primarily conducted in English.
-            </p><br>
-
-        <b><u>Tasks carried out</u></b>:<br>
-            <p style="margin-left: 16px">
-            - Developed new features for the Adobe Campaign marketing platform.<br>
-            - Built several React.js web pages integrated with Adobe Campaign.<br>
-            - Integrated new customer data flows into the Adobe Campaign CRM.<br>
-            - Created automated unit and integration test suites.<br>
-            - Authored and maintained technical documentation.<br>
-            - Trained internal teams on Adobe Campaign usage.
-            </p><br>
-            
-        <b><u>Technical environment:</u></b>:<br>
-            <p style="margin-left: 16px">
-            - Frontend: React.js / TypeScript<br>
-            - CRM: Adobe Campaign<br>
-            - Cloud: Google Cloud Platform (GCP)<br>
-            - Design & prototyping: Figma
-            </p>
-    `,
-  },
-  {
-    year: "January 2020 – September 2021",
-    title: "Full Stack Web Developer - React.js / Node.js",
-    subtitle: "Velvet Consulting",
-    type: "Full-time",
-    description: `
-    <b><u>Context</u></b>:<br>
-        <p style="margin-left: 16px">
-        As part of the internal development team at Velvet Consulting, I contributed to the creation of a web application for the ESSEC Business School.<br>
-        Working within a team of 3 developers, 1 Product Owner, and 1 Project Manager, we followed an Agile SCRUM methodology.<br>
-        The developed application was an internal portal designed for ESSEC students and faculty.<br>
-        The platform allowed users to track courses, share information between students and teachers, and stay updated on school news and announcements.
-        </p><br>
-
-    <b><u>Tasks carried out</u></b>:<br>
-        <p style="margin-left: 16px">
-        - Developed the new internal web portal using React.js.<br>
-        - Enhanced the site’s backend, built on the WordPress CMS.<br>
-        - Implemented automated unit and integration test suites.
-        </p><br>
-
-    <b><u>Technical environment:</u></b>:<br>
-        <p style="margin-left: 16px">
-        - Frontend: React.js / TypeScript<br>
-        - CMS: WordPress<br>
-        - Design & prototyping: Figma<br>
-        - Project management: Jira
-        </p>
-    `,
-  },
+  { key: "experience1" },
+  { key: "experience2" },
+  { key: "experience3" },
+  { key: "experience4" },
 ];
 
 const SectionResume: React.FC = () => {
+  const { t } = useTranslation();
   const [expandedExp, setExpandedExp] = useState<number | null>(null);
   const [expandedEducation, setExpandedEducation] = useState<number | null>(
     null
   );
+
   const handleClickCTA = () => {
     const section = document.getElementById("contact");
     if (section) section.scrollIntoView({ behavior: "smooth" });
   };
+
   const renderCard = (
     item: ResumeItem,
     isOpen: boolean,
@@ -174,7 +38,6 @@ const SectionResume: React.FC = () => {
       className="group relative p-4 mb-6 rounded-xl bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 cursor-pointer"
       onClick={toggle}
     >
-      {/* Animated border */}
       <span className="absolute top-0 left-0 h-0.5 w-0 bg-blue-500 transition-all duration-500 ease-out group-hover:w-full"></span>
       <span className="absolute top-0 right-0 w-0.5 h-0 bg-blue-500 transition-all duration-500 ease-out delay-150 group-hover:h-full"></span>
       <span className="absolute bottom-0 left-0 w-0.5 h-0 bg-blue-500 transition-all duration-500 ease-out delay-150 group-hover:h-full"></span>
@@ -183,18 +46,20 @@ const SectionResume: React.FC = () => {
       <div className="relative z-10">
         <div className="flex justify-between items-center mb-1">
           <p className="text-blue-600 dark:text-blue-400 font-semibold">
-            {item.year}
+            {t(`resume.${item.key}.year`)}
           </p>
-          {item.type && (
+          {t(`resume.${item.key}.type`) && (
             <span className="text-gray-600 dark:text-gray-400 text-sm italic">
-              {item.type}
+              {t(`resume.${item.key}.type`)}
             </span>
           )}
         </div>
-        <h5 className="text-lg font-medium">{item.title}</h5>
-        <p className="text-gray-600 dark:text-gray-400">{item.subtitle}</p>
+        <h5 className="text-lg font-medium">{t(`resume.${item.key}.title`)}</h5>
+        <p className="text-gray-600 dark:text-gray-400">
+          {t(`resume.${item.key}.subtitle`)}
+        </p>
 
-        {item.description && (
+        {t(`resume.${item.key}.description`) && (
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -204,19 +69,18 @@ const SectionResume: React.FC = () => {
           >
             {isOpen ? (
               <>
-                Hide details <ChevronUp className="w-4 h-4" />
+                {t("resume.hideDetails")} <ChevronUp className="w-4 h-4" />
               </>
             ) : (
               <>
-                Show details <ChevronDown className="w-4 h-4" />
+                {t("resume.showDetails")} <ChevronDown className="w-4 h-4" />
               </>
             )}
           </button>
         )}
 
-        {/* Smooth expand animation */}
         <AnimatePresence initial={false}>
-          {isOpen && item.description && (
+          {isOpen && t(`resume.${item.key}.description`) && (
             <motion.div
               key="content"
               initial={{ opacity: 0, height: 0 }}
@@ -227,7 +91,9 @@ const SectionResume: React.FC = () => {
             >
               <div
                 className="mt-3 text-black dark:text-white text-md border-t border-gray-300 dark:border-gray-700 pt-3"
-                dangerouslySetInnerHTML={{ __html: item.description }}
+                dangerouslySetInnerHTML={{
+                  __html: t(`resume.${item.key}.description`),
+                }}
               />
             </motion.div>
           )}
@@ -243,23 +109,24 @@ const SectionResume: React.FC = () => {
     >
       <div
         className="absolute inset-0 bg-cover bg-center invert-50"
-        style={{
-          backgroundImage: "url('/assets/imgs/background_resume.png')",
-        }}
+        style={{ backgroundImage: "url('/assets/imgs/background_resume.png')" }}
       ></div>
+
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-end gap-6">
           <div>
             <h3 className="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-3">
-              My Resume
+              {t("resume.headerTitle")}
             </h3>
             <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-              I believe that working hard and learning every day will help me
-              improve and satisfy my customers.
+              {t("resume.headerDescription")}
             </p>
           </div>
-          <ActionButton text="Get in touch" onClick={handleClickCTA} />
+          <ActionButton
+            text={t("resume.getInTouch")}
+            onClick={handleClickCTA}
+          />
         </div>
 
         {/* Resume Cards */}
@@ -270,7 +137,9 @@ const SectionResume: React.FC = () => {
               <div className="bg-blue-500/10 p-3 rounded-xl">
                 <GraduationCap className="w-8 h-8 text-blue-600 dark:text-blue-400" />
               </div>
-              <h3 className="text-2xl font-semibold">Education</h3>
+              <h3 className="text-2xl font-semibold">
+                {t("resume.education")}
+              </h3>
             </div>
             {educationData.map((item, index) =>
               renderCard(item, expandedEducation === index, () =>
@@ -285,7 +154,9 @@ const SectionResume: React.FC = () => {
               <div className="bg-blue-500/10 p-3 rounded-xl">
                 <Briefcase className="w-8 h-8 text-blue-600 dark:text-blue-400" />
               </div>
-              <h3 className="text-2xl font-semibold">Experience</h3>
+              <h3 className="text-2xl font-semibold">
+                {t("resume.experience")}
+              </h3>
             </div>
             {experienceData.map((item, index) =>
               renderCard(item, expandedExp === index, () =>
