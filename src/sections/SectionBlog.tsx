@@ -3,57 +3,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import ActionButton from "@/components/ActionButton";
 import { useNavigate } from "react-router-dom";
-
-interface BlogPost {
-  title: string;
-  date: string;
-  excerpt: string;
-  image: string;
-  link: string;
-  tags?: string[];
-}
-
-const blogPosts: BlogPost[] = [
-  {
-    title: "How I Built a Custom Vue.js Onboarding Tour Component",
-    date: "Nov 20, 2024",
-    excerpt:
-      "Building a good user onboarding experience is crucial for engaging new users. Instead of relying on a pre-built solution, I decided to create my own Vue.js onboarding tour component. In this article, I’ll walk you through how I approached the creation of the VueOnboardingTour component, the challenges I faced, and how I overcame them.",
-    image: "/assets/imgs/blog-1.png",
-    link: "https://medium.com/p/8dbf1e588b9b",
-    tags: ["Vue.js", "Frontend", "Open Source"],
-  },
-  {
-    title:
-      "Building a Collaborative Workspace with VueDragPlayground and Vue 3",
-    date: "Oct 15, 2025",
-    excerpt:
-      "In today’s world, collaborative tools are more important than ever. Whether you’re brainstorming ideas, managing projects, or designing interfaces, having a shared digital workspace is key to enhancing productivity and creativity. In this article, we’ll explore how to build a collaborative workspace using VueDragPlayground, a powerful Vue 3 library that provides drag, resize, and rotate functionalities, alongside Vue 3’s reactive capabilities.",
-    image: "/assets/imgs/blog-2.png",
-    link: "/blog/vue3-composition-api-tips",
-    tags: ["Vue.js", "Web Development", "User Onboarding"],
-  },
-];
-
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
+import { useTranslation } from "react-i18next";
 
 const cardVariants = {
   hidden: (index: number) => {
-    // index 0, 1, 2 correspond to positions in each row
-    const offset = index === 0 ? 0 : index * 50; // shift by ~50px increments
-    return {
-      opacity: 0,
-      x: offset,
-      y: 40,
-      scale: 0.95,
-    };
+    const offset = index === 0 ? 0 : index * 50;
+    return { opacity: 0, x: offset, y: 40, scale: 0.95 };
   },
   show: (index: number) => ({
     opacity: 1,
@@ -67,20 +22,19 @@ const cardVariants = {
       delay: index * 0.15,
     },
   }),
-  exit: {
-    opacity: 0,
-    scale: 0.9,
-    y: 30,
-    transition: { duration: 0.3 },
-  },
+  exit: { opacity: 0, scale: 0.9, y: 30, transition: { duration: 0.3 } },
 };
 
 const SectionBlog: React.FC = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  const visiblePosts = blogPosts.slice(0, 3);
+
+  const visiblePosts = t("blog.posts", { returnObjects: true }).slice(0, 3);
+
   const handleClickCTA = () => {
     navigate("/blog");
   };
+
   return (
     <section
       id="blog"
@@ -97,11 +51,10 @@ const SectionBlog: React.FC = () => {
         <div className="flex flex-col lg:flex-row justify-between items-end gap-6 mb-16">
           <div>
             <h3 className="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-3">
-              Latest Blog Posts
+              {t("blog.headerTitle")}
             </h3>
             <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-              Insights, tutorials, and guides from my latest web development
-              experiences.
+              {t("blog.headerDescription")}
             </p>
           </div>
         </div>
@@ -114,7 +67,7 @@ const SectionBlog: React.FC = () => {
           viewport={{ once: true, amount: 0.15 }}
         >
           <AnimatePresence>
-            {visiblePosts.map((post, index) => (
+            {visiblePosts.map((post: any, index: number) => (
               <motion.a
                 key={index}
                 href={post.link}
@@ -125,7 +78,7 @@ const SectionBlog: React.FC = () => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.15 }}
-                className="group h-fit block bg-[#edeaf8] dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-blue-500 shadow-lg"
+                className="group cursor-pointer h-fit block bg-[#edeaf8] dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-blue-500 shadow-lg"
               >
                 {/* Image */}
                 <motion.div layout className="relative overflow-hidden h-52">
@@ -150,7 +103,6 @@ const SectionBlog: React.FC = () => {
                     {post.title}
                   </h4>
 
-                  {/* ✨ Smooth expandable excerpt */}
                   <div className="relative overflow-hidden transition-all duration-600 ease-in-out max-h-[4.5rem] group-hover:max-h-[20rem]">
                     <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
                       {post.excerpt}
@@ -160,7 +112,7 @@ const SectionBlog: React.FC = () => {
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {post.tags?.map((tag, i) => (
+                    {post.tags?.map((tag: string, i: number) => (
                       <span
                         key={i}
                         className="text-xs bg-blue-500/10 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full border border-blue-400/20"
@@ -172,7 +124,7 @@ const SectionBlog: React.FC = () => {
 
                   {/* Read More */}
                   <span className="inline-flex items-center gap-1 text-sm text-blue-600 dark:text-blue-400 font-medium group-hover:text-blue-700 dark:group-hover:text-blue-300 transition">
-                    Read More <ArrowUpRight className="w-4 h-4" />
+                    {t("blog.readMore")} <ArrowUpRight className="w-4 h-4" />
                   </span>
                 </motion.div>
               </motion.a>
@@ -182,7 +134,7 @@ const SectionBlog: React.FC = () => {
 
         {/* See All Button */}
         <div className="text-center mt-16">
-          <ActionButton text="See all posts" onClick={handleClickCTA} />
+          <ActionButton text={t("blog.seeAllPosts")} onClick={handleClickCTA} />
         </div>
       </div>
     </section>
