@@ -73,5 +73,27 @@
       "label1": "Technologies",
       "label2": "Mastered"
     }
+  },
+  "portfolio": {
+    "headerTitle": "Portfolio",
+    "headerDescription": "A selection of my recent projects — blending clean design, scalable architecture, and modern frontend technologies.",
+    "viewProject": "View Project",
+    "source": "Source",
+    "storybook": "Storybook",
+    "seeAllProjects": "See all projects",
+    "projects": {
+      "vueDragPlayground": {
+        "title": "VueDragPlayground",
+        "description": "VueDragPlayground is a versatile Vue 3 library designed to create dynamic and interactive user interfaces with drag, resize, and rotate functionalities."
+      },
+      "vueOnboardingTour": {
+        "title": "VueOnboardingTour",
+        "description": "VueOnboardingTour is a Vue.js component that creates guided, step-by-step onboarding tours to help users navigate your app intuitively."
+      },
+      "vueLanding": {
+        "title": "VueLanding",
+        "description": "VueLanding offers a comprehensive suite of modern, responsive, and customizable Vue.js components, enabling developers to build stunning landing pages with ease."
+      }
+    }
   }
 }

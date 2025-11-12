@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, Globe } from "lucide-react";
 import ActionButton from "@/components/ActionButton";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface Project {
-  title: string;
+  key: string; // translation key for title/description
   role?: string;
-  description: string;
   tech: string[];
   image: string;
   link?: string;
@@ -19,9 +19,7 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "VueDragPlayground",
-    description:
-      "VueDragPlayground is a versatile Vue 3 library designed to create dynamic and interactive user interfaces with drag, resize, and rotate functionalities",
+    key: "vueDragPlayground",
     tech: ["Vue.js", "TypeScript"],
     image: "/assets/imgs/portfolio-1.png",
     link: "https://vuedragplayground.actechworld.com/",
@@ -30,10 +28,8 @@ const projects: Project[] = [
       "https://vuedragplayground.storybook.actechworld.com/?path=/story/lib-components-vuedragplayground--default",
   },
   {
-    title: "VueOnboardingTour",
-    description:
-      "VueOnboardingTour is a Vue.js component that creates guided, step-by-step onboarding tours to help users navigate your app intuitively.",
-    tech: ["Vue.js", "Typescript"],
+    key: "vueOnboardingTour",
+    tech: ["Vue.js", "TypeScript"],
     image: "/assets/imgs/portfolio-2.png",
     link: "https://vueonboardingtour.actechworld.com/",
     github:
@@ -42,9 +38,7 @@ const projects: Project[] = [
       "https://vueonboardingtour.storybook.actechworld.com/?path=/story/lib-components-vueonboardingtour--default",
   },
   {
-    title: "VueLanding",
-    description:
-      "VueLanding offers a comprehensive suite of modern, responsive, and customizable Vue.js components, enabling developers to build stunning landing pages with ease.",
+    key: "vueLanding",
     tech: ["Vue.js", "TypeScript", "Node.js"],
     image: "/assets/imgs/portfolio-3.png",
     link: "https://vuelanding.com/",
@@ -55,14 +49,8 @@ const projects: Project[] = [
 
 const cardVariants = {
   hidden: (index: number) => {
-    // index 0, 1, 2 correspond to positions in each row
-    const offset = index === 0 ? 0 : index * 50; // shift by ~50px increments
-    return {
-      opacity: 0,
-      x: offset,
-      y: 40,
-      scale: 0.95,
-    };
+    const offset = index === 0 ? 0 : index * 50;
+    return { opacity: 0, x: offset, y: 40, scale: 0.95 };
   },
   show: (index: number) => ({
     opacity: 1,
@@ -76,20 +64,16 @@ const cardVariants = {
       delay: index * 0.15,
     },
   }),
-  exit: {
-    opacity: 0,
-    scale: 0.9,
-    y: 30,
-    transition: { duration: 0.3 },
-  },
+  exit: { opacity: 0, scale: 0.9, y: 30, transition: { duration: 0.3 } },
 };
 
 const SectionPortfolio: React.FC = () => {
   const visibleProjects = projects.slice(0, 6);
   const navigate = useNavigate();
-  const handleClickCTA = () => {
-    navigate("/portfolio");
-  };
+  const { t } = useTranslation();
+
+  const handleClickCTA = () => navigate("/portfolio");
+
   return (
     <section
       id="portfolio"
@@ -106,11 +90,10 @@ const SectionPortfolio: React.FC = () => {
         <div className="flex flex-col lg:flex-row justify-between items-end gap-6 mb-16">
           <div>
             <h3 className="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-3">
-              Portfolio
+              {t("portfolio.headerTitle")}
             </h3>
             <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-              A selection of my recent projects — blending clean design,
-              scalable architecture, and modern frontend technologies.
+              {t("portfolio.headerDescription")}
             </p>
           </div>
         </div>
@@ -120,28 +103,26 @@ const SectionPortfolio: React.FC = () => {
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.2 }} // triggers when 20% of section is in view
+          viewport={{ once: true, amount: 0.2 }}
         >
           <AnimatePresence>
             {visibleProjects.map((project, index) => (
               <motion.a
-                key={project.title}
+                key={project.key}
                 href={project.link}
                 layout
-                custom={index % 3} // 0,1,2 repeated for each row
+                custom={index % 3}
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
-                className="group bg-[#edeaf8] dark:bg-gray-800 rounded-3xl overflow-hidden 
-                  border border-gray-300 dark:border-gray-700 hover:border-blue-500 
-                   shadow-lg cursor-pointer"
+                className="group bg-[#edeaf8] dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-blue-500 shadow-lg cursor-pointer"
               >
                 {/* Image */}
                 <motion.div layout className="relative overflow-hidden h-52">
                   <motion.img
                     src={project.image}
-                    alt={project.title}
+                    alt={t(`portfolio.projects.${project.key}.title`)}
                     className="object-cover w-full h-full transform group-hover:scale-105 transition duration-500"
                     layout
                   />
@@ -154,16 +135,15 @@ const SectionPortfolio: React.FC = () => {
                 {/* Content */}
                 <motion.div layout className="p-6">
                   <h4 className="text-xl font-semibold mb-2">
-                    {project.title}
+                    {t(`portfolio.projects.${project.key}.title`)}
                   </h4>
                   {project.role && (
                     <p className="text-sm text-blue-600 dark:text-blue-400 font-medium mb-3">
                       {project.role}
                     </p>
                   )}
-
                   <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 group-hover:line-clamp-none transition-all">
-                    {project.description}
+                    {t(`portfolio.projects.${project.key}.description`)}
                   </p>
 
                   {/* Tech */}
@@ -185,9 +165,10 @@ const SectionPortfolio: React.FC = () => {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 group-hover:text-blue-700 hover:dark:text-blue-300  transition"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 group-hover:text-blue-700 hover:dark:text-blue-300 transition"
                       >
-                        <Globe className="w-4 h-4" /> View Project
+                        <Globe className="w-4 h-4" />{" "}
+                        {t("portfolio.viewProject")}
                       </a>
                     )}
                     {project.github && (
@@ -197,7 +178,7 @@ const SectionPortfolio: React.FC = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition"
                       >
-                        <Github className="w-4 h-4" /> Source
+                        <Github className="w-4 h-4" /> {t("portfolio.source")}
                       </a>
                     )}
                     {project.storybook && (
@@ -207,7 +188,7 @@ const SectionPortfolio: React.FC = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition"
                       >
-                        Storybook
+                        {t("portfolio.storybook")}
                       </a>
                     )}
                   </div>
@@ -219,7 +200,10 @@ const SectionPortfolio: React.FC = () => {
 
         {/* See All Button */}
         <div className="text-center mt-16">
-          <ActionButton text="See all projects" onClick={handleClickCTA} />
+          <ActionButton
+            text={t("portfolio.seeAllProjects")}
+            onClick={handleClickCTA}
+          />
         </div>
       </div>
     </section>
