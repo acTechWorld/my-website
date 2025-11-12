@@ -1,41 +1,21 @@
 import React, { useState, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Search } from "lucide-react";
-
-interface BlogPost {
-  title: string;
-  date: string;
-  excerpt: string;
-  image: string;
-  link: string;
-  tags?: string[];
-}
-
-const blogPosts: BlogPost[] = [
-  {
-    title: "How I Built a Custom Vue.js Onboarding Tour Component",
-    date: "Nov 20, 2024",
-    excerpt:
-      "Building a good user onboarding experience is crucial for engaging new users. Instead of relying on a pre-built solution, I decided to create my own Vue.js onboarding tour component. In this article, I’ll walk you through how I approached the creation of the VueOnboardingTour component, the challenges I faced, and how I overcame them.",
-    image: "/assets/imgs/blog-1.png",
-    link: "https://medium.com/p/8dbf1e588b9b",
-    tags: ["Vue.js", "Frontend", "Open Source"],
-  },
-  {
-    title:
-      "Building a Collaborative Workspace with VueDragPlayground and Vue 3",
-    date: "Oct 15, 2025",
-    excerpt:
-      "In today’s world, collaborative tools are more important than ever. Whether you’re brainstorming ideas, managing projects, or designing interfaces, having a shared digital workspace is key to enhancing productivity and creativity. In this article, we’ll explore how to build a collaborative workspace using VueDragPlayground.",
-    image: "/assets/imgs/blog-2.png",
-    link: "/blog/vue3-composition-api-tips",
-    tags: ["Vue.js", "Web Development", "User Onboarding"],
-  },
-  // Add more posts here...
-];
+import { useTranslation } from "react-i18next";
 
 const ViewBlog: React.FC = () => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
+
+  // Get posts from translation JSON
+  const blogPosts = t("blog.posts", { returnObjects: true }) as Array<{
+    title: string;
+    date: string;
+    excerpt: string;
+    image: string;
+    link: string;
+    tags: string[];
+  }>;
 
   // Filter posts based on search input
   const filteredPosts = useMemo(() => {
@@ -44,10 +24,10 @@ const ViewBlog: React.FC = () => {
       return (
         post.title.toLowerCase().includes(query) ||
         post.excerpt.toLowerCase().includes(query) ||
-        post.tags?.some((tag) => tag.toLowerCase().includes(query))
+        post.tags.some((tag) => tag.toLowerCase().includes(query))
       );
     });
-  }, [search]);
+  }, [search, blogPosts]);
 
   return (
     <section className="relative min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white py-28">
@@ -55,11 +35,10 @@ const ViewBlog: React.FC = () => {
         {/* Header */}
         <div className="mb-12 text-center">
           <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-3">
-            My Blog Posts
+            {t("blog.headerTitle")}
           </h1>
           <p className="text-gray-700 dark:text-gray-300 text-lg">
-            Explore insights, tutorials, and stories from my development
-            journey.
+            {t("blog.headerDescription")}
           </p>
         </div>
 
@@ -68,20 +47,20 @@ const ViewBlog: React.FC = () => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-400 w-5 h-5" />
           <input
             type="text"
-            placeholder="Search posts..."
+            placeholder={t("blog.searchPlaceholder", "Search posts...")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full bg-[#edeaf8] dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl pl-10 pr-4 py-2 text-gray-800 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
           />
         </div>
 
-        {/* Blog Grid with smooth animated filtering */}
+        {/* Blog Grid */}
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {filteredPosts.length > 0 ? (
             <AnimatePresence>
-              {filteredPosts.map((post) => (
+              {filteredPosts.map((post, index) => (
                 <motion.a
-                  key={post.title}
+                  key={index}
                   href={post.link}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -110,18 +89,15 @@ const ViewBlog: React.FC = () => {
                       {post.title}
                     </h4>
 
-                    {/* ✨ Smooth expandable excerpt */}
                     <div className="relative overflow-hidden transition-all duration-600 ease-in-out max-h-[4.5rem] group-hover:max-h-[20rem]">
                       <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
                         {post.excerpt}
                       </p>
-                      {/* Gradient fade when clamped */}
                       <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-[#edeaf8] dark:from-gray-800 to-transparent pointer-events-none opacity-100 group-hover:opacity-0 transition-opacity duration-300"></div>
                     </div>
 
-                    {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {post.tags?.map((tag, i) => (
+                      {post.tags.map((tag, i) => (
                         <span
                           key={i}
                           className="text-xs bg-blue-500/10 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full border border-blue-400/20"
@@ -131,9 +107,8 @@ const ViewBlog: React.FC = () => {
                       ))}
                     </div>
 
-                    {/* Read More */}
-                    <span className="inline-flex items-center gap-1 text-sm text-blue-600 dark:text-blue-400 font-medium group-hover:text-blue-700 dark:group-hover:text-blue-300  transition">
-                      Read More <ArrowUpRight className="w-4 h-4" />
+                    <span className="inline-flex items-center gap-1 text-sm text-blue-600 dark:text-blue-400 font-medium group-hover:text-blue-700 dark:group-hover:text-blue-300 transition">
+                      {t("blog.readMore")} <ArrowUpRight className="w-4 h-4" />
                     </span>
                   </div>
                 </motion.a>
@@ -147,7 +122,7 @@ const ViewBlog: React.FC = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              No posts found.
+              {t("blog.noPostsFound", "No posts found.")}
             </motion.p>
           )}
         </div>
