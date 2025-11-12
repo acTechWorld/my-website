@@ -164,7 +164,10 @@ const experienceData: ResumeItem[] = [
 const SectionResume: React.FC = () => {
   const [expandedExp, setExpandedExp] = useState<number | null>(null);
   const [expandedEducation, setExpandedEducation] = useState<number | null>(null);
-
+  const handleClickCTA = () => {
+    const section = document.getElementById('contact');
+    if (section) section.scrollIntoView({ behavior: "smooth" });
+  }
   const renderCard = (
     item: ResumeItem,
     isOpen: boolean,
@@ -255,7 +258,7 @@ const SectionResume: React.FC = () => {
               improve and satisfy my customers.
             </p>
           </div>
-          <ActionButton text="Get in touch" />
+          <ActionButton text="Get in touch" onClick={handleClickCTA}/>
         </div>
 
         {/* Resume Cards */}

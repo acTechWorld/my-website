@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, Globe } from "lucide-react";
 import ActionButton from "@/components/ActionButton";
+import { useNavigate } from "react-router-dom";
 
 interface Project {
   title: string;
@@ -49,14 +50,43 @@ const projects: Project[] = [
 ];
 
 const cardVariants = {
-  hidden: { opacity: 0, scale: 0.95, y: 30 },
-  show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } },
-  exit: { opacity: 0, scale: 0.9, y: 30, transition: { duration: 0.3 } },
+  hidden: (index: number) => {
+    // index 0, 1, 2 correspond to positions in each row
+    const offset = index === 0 ? 0 : index * 50; // shift by ~50px increments
+    return {
+      opacity: 0,
+      x: offset,
+      y: 40,
+      scale: 0.95,
+    };
+  },
+  show: (index: number) => ({
+    opacity: 1,
+    x: 0,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 14,
+      delay: index * 0.15,
+    },
+  }),
+  exit: {
+    opacity: 0,
+    scale: 0.9,
+    y: 30,
+    transition: { duration: 0.3 },
+  },
 };
+
 
 const SectionPortfolio: React.FC = () => {
   const visibleProjects = projects.slice(0, 6);
-
+  const navigate = useNavigate()
+  const handleClickCTA = () => {
+    navigate("/portfolio");
+  };
   return (
     <section
       id="portfolio"
@@ -91,11 +121,18 @@ const SectionPortfolio: React.FC = () => {
         >
           <AnimatePresence>
             {visibleProjects.map((project, index) => (
-              <motion.div
+              <motion.a
                 key={project.title}
+                href={project.link}
                 layout
+                custom={index % 3} // 0,1,2 repeated for each row
                 variants={cardVariants}
-                className="group bg-[#edeaf8] dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-blue-500 transition shadow-lg cursor-pointer"
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.2 }}
+                className="group bg-[#edeaf8] dark:bg-gray-800 rounded-3xl overflow-hidden 
+                  border border-gray-300 dark:border-gray-700 hover:border-blue-500 
+                   shadow-lg cursor-pointer"
               >
                 {/* Image */}
                 <motion.div layout className="relative overflow-hidden h-52">
@@ -145,7 +182,7 @@ const SectionPortfolio: React.FC = () => {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 hover:dark:text-blue-300  transition"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 group-hover:text-blue-700 hover:dark:text-blue-300  transition"
                       >
                         <Globe className="w-4 h-4" /> View Project
                       </a>
@@ -172,14 +209,14 @@ const SectionPortfolio: React.FC = () => {
                     )}
                   </div>
                 </motion.div>
-              </motion.div>
+              </motion.a>
             ))}
           </AnimatePresence>
         </motion.div>
 
         {/* See All Button */}
         <div className="text-center mt-16">
-          <ActionButton text="See all projects" />
+          <ActionButton text="See all projects" onClick={handleClickCTA} />
         </div>
       </div>
     </section>
