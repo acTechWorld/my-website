@@ -3,7 +3,8 @@
     "greeting": "👋 Hello there, <br/> I'm Antoine Canard",
     "titleHighlight": "{Full Stack}",
     "titleSuffix": "Website & Web App Developer",
-    "description": "With expertise in cutting-edge technologies such as <react /> , <vue /> , <node /> , <express /> , and <postgressql /> — I deliver web solutions that are both innovative and robust.",      "downloadResume": "Download Resume",
+    "description": "With expertise in cutting-edge technologies such as <react /> , <vue /> , <node /> , <express /> , and <postgressql /> — I deliver web solutions that are both innovative and robust.",
+    "downloadResume": "Download Resume",
     "hireMe": "Hire me",
     "experience": "+6 years of professional website and web app development",
     "techMore": "...and more"
@@ -31,5 +32,28 @@
         "image": "/assets/imgs/blog-2.png"
       }
     ]
+  },
+  "contact": {
+    "headerTitle": "Get in touch",
+    "headerDescription": "I'm always excited to take on new projects and collaborate with innovative minds. If you have a project in mind or just want to chat about design, feel free to reach out!",
+    "phone": "Phone",
+    "email": "Email",
+    "github": "GitHub",
+    "location": "Location",
+    "linkedin": "LinkedIn",
+    "formTitle": "Leave a message",
+    "formName": "Your name",
+    "formNamePlaceholder": "John Doe",
+    "formEmail": "Email address",
+    "formEmailPlaceholder": "canard.antoine@gmail.com",
+    "formPhone": "Your phone",
+    "formPhonePlaceholder": "+33 601090720",
+    "formSubject": "Subject",
+    "formSubjectPlaceholder": "I want to contact for...",
+    "formMessage": "Message",
+    "formMessagePlaceholder": "Your message here...",
+    "sendMessage": "Send Message",
+    "sending": "Sending...",
+    "sent": "Sent!"
   }
 }

@@ -2,57 +2,53 @@ import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import ActionButton from "@/components/ActionButton";
 import { Phone, Mail, Github, MapPin, Linkedin } from "lucide-react";
-
-const contactItems = [
-  {
-    icon: <Phone className="w-6 h-6 text-blue-500" />,
-    label: "Phone",
-    value: "+33 601090720",
-    href: "tel:+0123456789",
-  },
-  {
-    icon: <Mail className="w-6 h-6 text-blue-500" />,
-    label: "Email",
-    value: "canard.antoine@gmail.com",
-    href: "mailto:canard.antoine@gmail.com",
-  },
-  {
-    icon: <Github className="w-6 h-6 text-blue-500" />,
-    label: "GitHub",
-    value: "github.com/acTechWorld",
-    href: "https://github.com/acTechWorld",
-  },
-  {
-    icon: <MapPin className="w-6 h-6 text-blue-500" />,
-    label: "Location",
-    value: "Paris, France",
-    href: "https://maps.google.com/maps?q=Paris+France",
-  },
-  {
-    icon: <Linkedin className="w-6 h-6 text-blue-500" />,
-    label: "LinkedIn",
-    value: "linkedin.com/in/antoine-canard",
-    href: "https://www.linkedin.com/in/antoine-canard",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const SectionContact: React.FC = () => {
+  const { t } = useTranslation();
   const [isSending, setIsSending] = useState(false);
   const [sent, setSent] = useState(false);
+
+  const contactItems = [
+    {
+      icon: <Phone className="w-6 h-6 text-blue-500" />,
+      label: t("contact.phone"),
+      value: "+33 601090720",
+      href: "tel:+0123456789",
+    },
+    {
+      icon: <Mail className="w-6 h-6 text-blue-500" />,
+      label: t("contact.email"),
+      value: "canard.antoine@gmail.com",
+      href: "mailto:canard.antoine@gmail.com",
+    },
+    {
+      icon: <Github className="w-6 h-6 text-blue-500" />,
+      label: t("contact.github"),
+      value: "github.com/acTechWorld",
+      href: "https://github.com/acTechWorld",
+    },
+    {
+      icon: <MapPin className="w-6 h-6 text-blue-500" />,
+      label: t("contact.location"),
+      value: "Paris, France",
+      href: "https://maps.google.com/maps?q=Paris+France",
+    },
+    {
+      icon: <Linkedin className="w-6 h-6 text-blue-500" />,
+      label: t("contact.linkedin"),
+      value: "linkedin.com/in/antoine-canard",
+      href: "https://www.linkedin.com/in/antoine-canard",
+    },
+  ];
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSending(true);
-
     const form = e.currentTarget;
 
     emailjs
-      .sendForm(
-        "YOUR_SERVICE_ID", // e.g. "service_xxx"
-        "YOUR_TEMPLATE_ID", // e.g. "template_xxx"
-        form,
-        "YOUR_PUBLIC_KEY" // e.g. "3e7Q9aXl_XXXXX"
-      )
+      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", form, "YOUR_PUBLIC_KEY")
       .then(
         () => {
           setSent(true);
@@ -65,6 +61,7 @@ const SectionContact: React.FC = () => {
         }
       );
   };
+
   return (
     <section
       id="contact"
@@ -72,16 +69,14 @@ const SectionContact: React.FC = () => {
     >
       <div className="container mx-auto px-4 relative z-10">
         <h3 className="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-4">
-          Get in touch
+          {t("contact.headerTitle")}
         </h3>
         <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-12">
-          I'm always excited to take on new projects and collaborate with
-          innovative minds. If you have a project in mind or just want to chat
-          about design, feel free to reach out!
+          {t("contact.headerDescription")}
         </p>
 
         <div className="flex gap-12 flex-col-reverse lg:flex-row">
-          {/* Left side — contact info */}
+          {/* Contact info */}
           <div className="grid p-4 md:p-0 md:grid-cols-2 lg:flex flex-wrap flex-col self-center gap-6 lg:w-1/3">
             {contactItems.map((item, index) => (
               <a
@@ -106,9 +101,11 @@ const SectionContact: React.FC = () => {
             ))}
           </div>
 
-          {/* Right side — contact form */}
+          {/* Contact form */}
           <div className="w-full lg:w-2/3 bg-[#edeaf8] dark:bg-gray-800 p-8 rounded-3xl relative">
-            <h3 className="text-2xl font-semibold mb-6">Leave a message</h3>
+            <h3 className="text-2xl font-semibold mb-6">
+              {t("contact.formTitle")}
+            </h3>
             <form
               onSubmit={handleSubmit}
               className="grid grid-cols-1 md:grid-cols-2 gap-6"
@@ -118,14 +115,14 @@ const SectionContact: React.FC = () => {
                   htmlFor="name"
                   className="block text-sm mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Your name{" "}
+                  {t("contact.formName")}{" "}
                   <span className="text-blue-600 dark:text-blue-400">*</span>
                 </label>
                 <input
                   id="name"
                   name="name"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder={t("contact.formNamePlaceholder")}
                   className="w-full px-4 py-2 rounded-lg border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-900 text-black dark:text-white focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -135,14 +132,14 @@ const SectionContact: React.FC = () => {
                   htmlFor="email"
                   className="block text-sm mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Email address{" "}
+                  {t("contact.formEmail")}{" "}
                   <span className="text-blue-600 dark:text-blue-400">*</span>
                 </label>
                 <input
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="canard.antoine@gmail.com"
+                  placeholder={t("contact.formEmailPlaceholder")}
                   className="w-full px-4 py-2 rounded-lg border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-900 text-black dark:text-white focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -152,14 +149,14 @@ const SectionContact: React.FC = () => {
                   htmlFor="phone"
                   className="block text-sm mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Your phone{" "}
+                  {t("contact.formPhone")}{" "}
                   <span className="text-blue-600 dark:text-blue-400">*</span>
                 </label>
                 <input
                   id="phone"
                   name="phone"
                   type="text"
-                  placeholder="+33 601090720"
+                  placeholder={t("contact.formPhonePlaceholder")}
                   className="w-full px-4 py-2 rounded-lg border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-900 text-black dark:text-white focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -169,14 +166,14 @@ const SectionContact: React.FC = () => {
                   htmlFor="subject"
                   className="block text-sm mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Subject{" "}
+                  {t("contact.formSubject")}{" "}
                   <span className="text-blue-600 dark:text-blue-400">*</span>
                 </label>
                 <input
                   id="subject"
                   name="subject"
                   type="text"
-                  placeholder="I want to contact for..."
+                  placeholder={t("contact.formSubjectPlaceholder")}
                   className="w-full px-4 py-2 rounded-lg border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-900 text-black dark:text-white focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -186,13 +183,13 @@ const SectionContact: React.FC = () => {
                   htmlFor="message"
                   className="block text-sm mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Message{" "}
+                  {t("contact.formMessage")}{" "}
                   <span className="text-blue-600 dark:text-blue-400">*</span>
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Your message here..."
+                  placeholder={t("contact.formMessagePlaceholder")}
                   className="w-full px-4 py-3 rounded-lg border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-900 text-black dark:text-white focus:ring-2 focus:ring-blue-500"
                   rows={5}
                 ></textarea>
@@ -204,7 +201,11 @@ const SectionContact: React.FC = () => {
                   type="submit"
                   disabled={isSending}
                   text={
-                    isSending ? "Sending..." : sent ? "Sent!" : "Send Message"
+                    isSending
+                      ? t("contact.sending")
+                      : sent
+                      ? t("contact.sent")
+                      : t("contact.sendMessage")
                   }
                 />
               </div>
