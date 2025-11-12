@@ -1,7 +1,7 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import ActionButton from '@/components/ActionButton'
+import ActionButton from "@/components/ActionButton";
 import { useNavigate } from "react-router-dom";
 
 interface BlogPost {
@@ -24,7 +24,8 @@ const blogPosts: BlogPost[] = [
     tags: ["Vue.js", "Frontend", "Open Source"],
   },
   {
-    title: "Building a Collaborative Workspace with VueDragPlayground and Vue 3",
+    title:
+      "Building a Collaborative Workspace with VueDragPlayground and Vue 3",
     date: "Oct 15, 2025",
     excerpt:
       "In today’s world, collaborative tools are more important than ever. Whether you’re brainstorming ideas, managing projects, or designing interfaces, having a shared digital workspace is key to enhancing productivity and creativity. In this article, we’ll explore how to build a collaborative workspace using VueDragPlayground, a powerful Vue 3 library that provides drag, resize, and rotate functionalities, alongside Vue 3’s reactive capabilities.",
@@ -75,11 +76,11 @@ const cardVariants = {
 };
 
 const SectionBlog: React.FC = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const visiblePosts = blogPosts.slice(0, 3);
   const handleClickCTA = () => {
-    navigate('/blog')
-  }
+    navigate("/blog");
+  };
   return (
     <section
       id="blog"

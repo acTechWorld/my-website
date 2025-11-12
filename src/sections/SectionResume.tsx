@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  GraduationCap,
-  Briefcase,
-  ChevronDown,
-  ChevronUp,
-} from "lucide-react";
+import { GraduationCap, Briefcase, ChevronDown, ChevronUp } from "lucide-react";
 import ActionButton from "@/components/ActionButton";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -23,7 +18,7 @@ const educationData: ResumeItem[] = [
     subtitle: "ISEP",
     description: `<b><u>Majors</u></b>: Information Systems Architecture, Cybersecurity, Engineering Software and web technologies<br>
 <b><u>Studied programming languages</u></b>: Python, Java, Js, Html, Css, SQL, PHP, Git<br>
-<b><u>Studied frameworks</u></b>: React.js, Spring boot, Vue.js, Node.js`
+<b><u>Studied frameworks</u></b>: React.js, Spring boot, Vue.js, Node.js`,
   },
 ];
 
@@ -56,7 +51,7 @@ const experienceData: ResumeItem[] = [
         - CI/CD: Jenkins / argo CD<br>
         - Tickets: Jira
         </p>
-    `
+    `,
   },
   {
     year: "September 2021 - December 2023",
@@ -96,7 +91,7 @@ const experienceData: ResumeItem[] = [
         - Monitoring: Grafana, ELK / APM<br>
         - Project management: Jira
         </p>
-    `
+    `,
   },
   {
     year: "September 2020 – September 2021",
@@ -127,7 +122,7 @@ const experienceData: ResumeItem[] = [
             - Cloud: Google Cloud Platform (GCP)<br>
             - Design & prototyping: Figma
             </p>
-    `
+    `,
   },
   {
     year: "January 2020 – September 2021",
@@ -157,17 +152,19 @@ const experienceData: ResumeItem[] = [
         - Design & prototyping: Figma<br>
         - Project management: Jira
         </p>
-    `
+    `,
   },
 ];
 
 const SectionResume: React.FC = () => {
   const [expandedExp, setExpandedExp] = useState<number | null>(null);
-  const [expandedEducation, setExpandedEducation] = useState<number | null>(null);
+  const [expandedEducation, setExpandedEducation] = useState<number | null>(
+    null
+  );
   const handleClickCTA = () => {
-    const section = document.getElementById('contact');
+    const section = document.getElementById("contact");
     if (section) section.scrollIntoView({ behavior: "smooth" });
-  }
+  };
   const renderCard = (
     item: ResumeItem,
     isOpen: boolean,
@@ -185,9 +182,13 @@ const SectionResume: React.FC = () => {
 
       <div className="relative z-10">
         <div className="flex justify-between items-center mb-1">
-          <p className="text-blue-600 dark:text-blue-400 font-semibold">{item.year}</p>
+          <p className="text-blue-600 dark:text-blue-400 font-semibold">
+            {item.year}
+          </p>
           {item.type && (
-            <span className="text-gray-600 dark:text-gray-400 text-sm italic">{item.type}</span>
+            <span className="text-gray-600 dark:text-gray-400 text-sm italic">
+              {item.type}
+            </span>
           )}
         </div>
         <h5 className="text-lg font-medium">{item.title}</h5>
@@ -258,7 +259,7 @@ const SectionResume: React.FC = () => {
               improve and satisfy my customers.
             </p>
           </div>
-          <ActionButton text="Get in touch" onClick={handleClickCTA}/>
+          <ActionButton text="Get in touch" onClick={handleClickCTA} />
         </div>
 
         {/* Resume Cards */}
@@ -273,9 +274,7 @@ const SectionResume: React.FC = () => {
             </div>
             {educationData.map((item, index) =>
               renderCard(item, expandedEducation === index, () =>
-                setExpandedEducation(
-                  expandedEducation === index ? null : index
-                )
+                setExpandedEducation(expandedEducation === index ? null : index)
               )
             )}
           </div>
@@ -299,6 +298,5 @@ const SectionResume: React.FC = () => {
     </section>
   );
 };
-
 
 export default SectionResume;

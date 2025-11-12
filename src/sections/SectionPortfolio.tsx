@@ -26,7 +26,8 @@ const projects: Project[] = [
     image: "/assets/imgs/portfolio-1.png",
     link: "https://vuedragplayground.actechworld.com/",
     github: "https://github.com/acTechWorld/vue-drag-playground",
-    storybook: "https://vuedragplayground.storybook.actechworld.com/?path=/story/lib-components-vuedragplayground--default",
+    storybook:
+      "https://vuedragplayground.storybook.actechworld.com/?path=/story/lib-components-vuedragplayground--default",
   },
   {
     title: "VueOnboardingTour",
@@ -35,8 +36,10 @@ const projects: Project[] = [
     tech: ["Vue.js", "Typescript"],
     image: "/assets/imgs/portfolio-2.png",
     link: "https://vueonboardingtour.actechworld.com/",
-    github: "http://github.com/acTechWorld/vue-onboarding-tour/tree/master/library",
-    storybook: "https://vueonboardingtour.storybook.actechworld.com/?path=/story/lib-components-vueonboardingtour--default",
+    github:
+      "http://github.com/acTechWorld/vue-onboarding-tour/tree/master/library",
+    storybook:
+      "https://vueonboardingtour.storybook.actechworld.com/?path=/story/lib-components-vueonboardingtour--default",
   },
   {
     title: "VueLanding",
@@ -45,7 +48,8 @@ const projects: Project[] = [
     tech: ["Vue.js", "TypeScript", "Node.js"],
     image: "/assets/imgs/portfolio-3.png",
     link: "https://vuelanding.com/",
-    storybook: "https://storybook.vuelanding.com/?path=/story/components-features-section--default",
+    storybook:
+      "https://storybook.vuelanding.com/?path=/story/components-features-section--default",
   },
 ];
 
@@ -80,10 +84,9 @@ const cardVariants = {
   },
 };
 
-
 const SectionPortfolio: React.FC = () => {
   const visibleProjects = projects.slice(0, 6);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleClickCTA = () => {
     navigate("/portfolio");
   };

@@ -18,7 +18,7 @@ const kpis: KPIItem[] = [
 const SectionKPI: React.FC = () => {
   const { ref, inView } = useInView({
     triggerOnce: true, // animate only once
-    threshold: 0.3,    // start animation when 30% of section is visible
+    threshold: 0.3, // start animation when 30% of section is visible
   });
 
   return (
@@ -37,11 +37,7 @@ const SectionKPI: React.FC = () => {
                 <span className="text-5xl font-medium text-blue-600 dark:text-blue-400 flex items-center">
                   <span className="text-6xl font-semibold text-gray-900 dark:text-gray-100">
                     {inView ? (
-                      <CountUp
-                        start={0}
-                        end={item.value}
-                        duration={2}
-                      />
+                      <CountUp start={0} end={item.value} duration={2} />
                     ) : (
                       0
                     )}
@@ -49,7 +45,9 @@ const SectionKPI: React.FC = () => {
                   +
                 </span>
                 <div className="text-start ms-3">
-                  <p className="text-lg text-gray-600 dark:text-gray-400 mb-0">{item.label1}</p>
+                  <p className="text-lg text-gray-600 dark:text-gray-400 mb-0">
+                    {item.label1}
+                  </p>
                   <p className="text-lg font-bold mb-0 text-gray-900 dark:text-gray-100">
                     {item.label2}
                   </p>

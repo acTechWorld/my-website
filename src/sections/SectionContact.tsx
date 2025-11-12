@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import ActionButton from "@/components/ActionButton";
-import {
-  Phone,
-  Mail,
-  Github,
-  MapPin,
-  Linkedin,
-} from "lucide-react";
+import { Phone, Mail, Github, MapPin, Linkedin } from "lucide-react";
 
 const contactItems = [
   {
@@ -34,7 +28,7 @@ const contactItems = [
     value: "Paris, France",
     href: "https://maps.google.com/maps?q=Paris+France",
   },
-    {
+  {
     icon: <Linkedin className="w-6 h-6 text-blue-500" />,
     label: "LinkedIn",
     value: "linkedin.com/in/antoine-canard",
@@ -43,8 +37,7 @@ const contactItems = [
 ];
 
 const SectionContact: React.FC = () => {
-
-    const [isSending, setIsSending] = useState(false);
+  const [isSending, setIsSending] = useState(false);
   const [sent, setSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -55,10 +48,10 @@ const SectionContact: React.FC = () => {
 
     emailjs
       .sendForm(
-        "YOUR_SERVICE_ID",    // e.g. "service_xxx"
-        "YOUR_TEMPLATE_ID",   // e.g. "template_xxx"
+        "YOUR_SERVICE_ID", // e.g. "service_xxx"
+        "YOUR_TEMPLATE_ID", // e.g. "template_xxx"
         form,
-        "YOUR_PUBLIC_KEY"     // e.g. "3e7Q9aXl_XXXXX"
+        "YOUR_PUBLIC_KEY" // e.g. "3e7Q9aXl_XXXXX"
       )
       .then(
         () => {
@@ -102,7 +95,9 @@ const SectionContact: React.FC = () => {
                   {item.icon}
                 </div>
                 <div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">{item.label}</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                    {item.label}
+                  </p>
                   <h6 className="text-lg font-semibold text-black dark:text-white">
                     {item.value}
                   </h6>
@@ -123,7 +118,8 @@ const SectionContact: React.FC = () => {
                   htmlFor="name"
                   className="block text-sm mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Your name <span className="text-blue-600 dark:text-blue-400">*</span>
+                  Your name{" "}
+                  <span className="text-blue-600 dark:text-blue-400">*</span>
                 </label>
                 <input
                   id="name"
@@ -139,7 +135,8 @@ const SectionContact: React.FC = () => {
                   htmlFor="email"
                   className="block text-sm mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Email address <span className="text-blue-600 dark:text-blue-400">*</span>
+                  Email address{" "}
+                  <span className="text-blue-600 dark:text-blue-400">*</span>
                 </label>
                 <input
                   id="email"
@@ -155,7 +152,8 @@ const SectionContact: React.FC = () => {
                   htmlFor="phone"
                   className="block text-sm mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Your phone <span className="text-blue-600 dark:text-blue-400">*</span>
+                  Your phone{" "}
+                  <span className="text-blue-600 dark:text-blue-400">*</span>
                 </label>
                 <input
                   id="phone"
@@ -171,7 +169,8 @@ const SectionContact: React.FC = () => {
                   htmlFor="subject"
                   className="block text-sm mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Subject <span className="text-blue-600 dark:text-blue-400">*</span>
+                  Subject{" "}
+                  <span className="text-blue-600 dark:text-blue-400">*</span>
                 </label>
                 <input
                   id="subject"
@@ -187,7 +186,8 @@ const SectionContact: React.FC = () => {
                   htmlFor="message"
                   className="block text-sm mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Message <span className="text-blue-600 dark:text-blue-400">*</span>
+                  Message{" "}
+                  <span className="text-blue-600 dark:text-blue-400">*</span>
                 </label>
                 <textarea
                   id="message"
@@ -199,7 +199,14 @@ const SectionContact: React.FC = () => {
               </div>
 
               <div className="md:col-span-2">
-                <ActionButton className="flex-left" type="submit" disabled={isSending} text={isSending ? "Sending..." : sent ? "Sent!" : "Send Message"}/>
+                <ActionButton
+                  className="flex-left"
+                  type="submit"
+                  disabled={isSending}
+                  text={
+                    isSending ? "Sending..." : sent ? "Sent!" : "Send Message"
+                  }
+                />
               </div>
             </form>
           </div>
