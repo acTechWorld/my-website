@@ -55,5 +55,23 @@
     "sendMessage": "Send Message",
     "sending": "Sending...",
     "sent": "Sent!"
+  },
+  "kpi": {
+    "experienceYears": {
+      "label1": "Year of",
+      "label2": "Experience"
+    },
+    "projectsCompleted": {
+      "label1": "Projects",
+      "label2": "Completed"
+    },
+    "happyClients": {
+      "label1": "Satisfied",
+      "label2": "Happy Clients"
+    },
+    "technologiesMastered": {
+      "label1": "Technologies",
+      "label2": "Mastered"
+    }
   }
 }

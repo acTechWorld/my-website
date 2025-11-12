@@ -1,6 +1,7 @@
 import React from "react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
+import { useTranslation } from "react-i18next";
 
 interface KPIItem {
   value: number;
@@ -8,17 +9,18 @@ interface KPIItem {
   label2: string;
 }
 
-const kpis: KPIItem[] = [
-  { value: 6, label1: "Year of", label2: "Experience" },
-  { value: 30, label1: "Projects", label2: "Completed" },
-  { value: 6, label1: "Satisfied", label2: "Happy Clients" },
-  { value: 15, label1: "Technologies", label2: "Mastered" },
+const kpisData: { value: number; key: string }[] = [
+  { value: 6, key: "experienceYears" },
+  { value: 30, key: "projectsCompleted" },
+  { value: 6, key: "happyClients" },
+  { value: 15, key: "technologiesMastered" },
 ];
 
 const SectionKPI: React.FC = () => {
+  const { t } = useTranslation();
   const { ref, inView } = useInView({
-    triggerOnce: true, // animate only once
-    threshold: 0.3, // start animation when 30% of section is visible
+    triggerOnce: true,
+    threshold: 0.3,
   });
 
   return (
@@ -28,7 +30,7 @@ const SectionKPI: React.FC = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap flex-col lg:flex-row items-center justify-between gap-8">
-          {kpis.map((item, index) => (
+          {kpisData.map((item, index) => (
             <div
               key={index}
               className="flex items-center justify-center w-full sm:w-1/2 lg:w-auto"
@@ -46,10 +48,10 @@ const SectionKPI: React.FC = () => {
                 </span>
                 <div className="text-start ms-3">
                   <p className="text-lg text-gray-600 dark:text-gray-400 mb-0">
-                    {item.label1}
+                    {t(`kpi.${item.key}.label1`)}
                   </p>
                   <p className="text-lg font-bold mb-0 text-gray-900 dark:text-gray-100">
-                    {item.label2}
+                    {t(`kpi.${item.key}.label2`)}
                   </p>
                 </div>
               </div>
