@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "greeting": "👋 Hello there, <br/> I'm Antoine Canard",
+    "title": "{Full Stack} Website & Web App Developer",
+    "description": "With expertise in cutting-edge technologies such as React, Vue.js, NodeJS, Express, and PostgresSql — I deliver web solutions that are both innovative and robust.",
+    "downloadResume": "Download Resume",
+    "hireMe": "Hire me",
+    "experience": "+6 years of professional website and web app development",
+    "techMore": "...and more"
+  },
+  "tech": {
+    "vue": "Vue.js",
+    "react": "React",
+    "typescript": "TypeScript",
+    "node": "Node.js",
+    "express": "Express"
+  }
+}
