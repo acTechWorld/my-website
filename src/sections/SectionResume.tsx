@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GraduationCap, Briefcase, ChevronDown, ChevronUp } from "lucide-react";
-import ActionButton from "@/components/ActionButton";
+import ActionButton from "../components/ActionButton";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 

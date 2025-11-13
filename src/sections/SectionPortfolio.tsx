@@ -3,7 +3,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, Globe } from "lucide-react";
-import ActionButton from "@/components/ActionButton";
+import ActionButton from "../components/ActionButton";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -59,7 +59,6 @@ const cardVariants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "spring",
       stiffness: 100,
       damping: 14,
       delay: index * 0.15,

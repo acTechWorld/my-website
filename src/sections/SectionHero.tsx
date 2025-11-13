@@ -121,7 +121,6 @@ const Hero: FC = () => {
               <div
                 key={i}
                 className="w-12 h-12 rounded-xl bg-[#edeaf8] dark:bg-gray-800 p-2 flex items-center justify-center"
-                title={t(tech.nameKey)}
               >
                 {tech.icon}
               </div>

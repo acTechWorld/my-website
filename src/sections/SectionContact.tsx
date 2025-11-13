@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
-import ActionButton from "@/components/ActionButton";
+import ActionButton from "../components/ActionButton";
 import { Phone, Mail, Github, MapPin, Linkedin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -228,7 +228,6 @@ const SectionContact: React.FC = () => {
 
               <div className="md:col-span-2">
                 <ActionButton
-                  className="flex-left"
                   type="submit"
                   disabled={isSending}
                   text={

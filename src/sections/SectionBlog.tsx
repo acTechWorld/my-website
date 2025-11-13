@@ -1,7 +1,7 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import ActionButton from "@/components/ActionButton";
+import ActionButton from "../components/ActionButton";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -16,7 +16,6 @@ const cardVariants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "spring",
       stiffness: 100,
       damping: 14,
       delay: index * 0.15,
@@ -29,7 +28,7 @@ const SectionBlog: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const visiblePosts = t("blog.posts", { returnObjects: true }).slice(0, 3);
+  const visiblePosts = (t("blog.posts", { returnObjects: true }) as any[]).slice(0, 3);
 
   const handleClickCTA = () => {
     navigate("/blog");

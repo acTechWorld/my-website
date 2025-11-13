@@ -3,12 +3,6 @@ import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import { useTranslation } from "react-i18next";
 
-interface KPIItem {
-  value: number;
-  label1: string;
-  label2: string;
-}
-
 const kpisData: { value: number; key: string }[] = [
   { value: 6, key: "experienceYears" },
   { value: 30, key: "projectsCompleted" },

@@ -1,4 +1,3 @@
-import Header from './Header'
 import SectionHero from './sections/SectionHero'
 import SectionKPI from './sections/SectionKPI'
 import SectionContact from './sections/SectionContact'
