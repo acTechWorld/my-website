@@ -1,12 +1,12 @@
 {
   "hero": {
-    "greeting": "👋 Bonjour, <br/> je suis Antoine Canard",
+    "greeting": "👋 Bonjour, <br/> je m'appelle Antoine Canard",
     "titleHighlight": "{Full Stack}",
-    "titleSuffix": "Développeur de sites web et d’applications web",
+    "titleSuffix": "Développeur Web",
     "description": "Fort d’une expertise dans des technologies de pointe telles que <react /> , <vue /> , <node /> , <express /> et <postgressql /> — je conçois des solutions web à la fois innovantes et robustes.",
-    "downloadResume": "Télécharger le CV",
-    "hireMe": "Me contacter",
-    "experience": "+6 ans d’expérience professionnelle en développement web et applications web",
+    "downloadResume": "Télécharger mon CV",
+    "hireMe": "Me recruter",
+    "experience": "+6 ans d’expérience professionnelle en développement web",
     "techMore": "...et bien plus"
   },
   "blog": {
@@ -14,21 +14,23 @@
     "headerDescription": "Aperçus, tutoriels et guides issus de mes dernières expériences en développement web.",
     "readMore": "Lire la suite",
     "seeAllPosts": "Voir tous les articles",
+    "searchPlaceholder": "Rechercher un article...",
+    "noPostsFound": "Aucun article trouvé.",
     "posts": [
+      {
+        "title": "Créer un espace de travail collaboratif avec VueDragPlayground et Vue 3",
+        "date": "15 oct. 2025",
+        "excerpt": "Dans le monde d’aujourd’hui, les outils collaboratifs sont plus importants que jamais. Que ce soit pour le brainstorming, la gestion de projets ou la conception d’interfaces, disposer d’un espace de travail numérique partagé est essentiel pour améliorer la productivité et la créativité. Dans cet article, nous verrons comment créer un espace collaboratif avec VueDragPlayground, une puissante bibliothèque Vue 3 offrant des fonctionnalités de glisser-déposer, redimensionnement et rotation, associées aux capacités réactives de Vue 3.",
+        "tags": ["Vue.js", "Développement Web", "Onboarding Utilisateur"],
+        "link": "https://medium.com/@canard.antoine/building-a-collaborative-workspace-with-vuedragplayground-and-vue-3-c7ca4c94d5c4",
+        "image": "/assets/imgs/blog-1.png"
+      },
       {
         "title": "Comment j’ai créé un composant d’onboarding personnalisé avec Vue.js",
         "date": "20 nov. 2024",
         "excerpt": "Offrir une bonne expérience d’onboarding utilisateur est essentiel pour engager les nouveaux utilisateurs. Plutôt que d’utiliser une solution préfabriquée, j’ai décidé de créer mon propre composant d’onboarding avec Vue.js. Dans cet article, je vous explique ma démarche, les défis rencontrés et comment je les ai surmontés.",
         "tags": ["Vue.js", "Frontend", "Open Source"],
         "link": "https://medium.com/p/8dbf1e588b9b",
-        "image": "/assets/imgs/blog-1.png"
-      },
-      {
-        "title": "Créer un espace de travail collaboratif avec VueDragPlayground et Vue 3",
-        "date": "15 oct. 2025",
-        "excerpt": "Dans le monde d’aujourd’hui, les outils collaboratifs sont plus importants que jamais. Que ce soit pour le brainstorming, la gestion de projets ou la conception d’interfaces, disposer d’un espace de travail numérique partagé est essentiel pour améliorer la productivité et la créativité. Dans cet article, nous verrons comment créer un espace collaboratif avec VueDragPlayground, une puissante bibliothèque Vue 3 offrant des fonctionnalités de glisser-déposer, redimensionnement et rotation, associées aux capacités réactives de Vue 3.",
-        "tags": ["Vue.js", "Développement Web", "Onboarding Utilisateur"],
-        "link": "/blog/vue3-composition-api-tips",
         "image": "/assets/imgs/blog-2.png"
       }
     ]
@@ -81,6 +83,8 @@
     "source": "Code source",
     "storybook": "Storybook",
     "seeAllProjects": "Voir tous les projets",
+    "searchPlaceholder": "Rechercher un projet...",
+    "noProjectsFound": "Aucun projet trouvé.",
     "projects": {
       "vueDragPlayground": {
         "title": "VueDragPlayground",
@@ -125,7 +129,7 @@
       "type": "Temps plein (Consulting) / Freelance",
       "title": "Lead Développeur Fullstack Web - Vue.js | Java Spring Boot",
       "subtitle": "Système U",
-      "description": "<b><u>Contexte</u></b> :<br><p style='margin-left: 16px'>En tant que consultant puis freelance, j’ai accompagné Système U dans la modernisation de leur suite d’applications de la chaîne logistique.<br>Au sein de la division UIris, j’ai travaillé dans une équipe composée de 4 développeurs, 2 chefs de projet, 3 Product Owners et 1 designer UX/UI.<br>Pendant deux ans, nous avons conçu et développé trois nouvelles applications utilisées dans les entrepôts logistiques du groupe.</p><br><b><u>Tâches réalisées</u></b> :<br><p style='margin-left: 16px'>- Conception, développement, déploiement et maintenance de trois applications PWA frontend en Vue.js<br>- Développement et maintenance d’applications Android TWA en Java<br>- Développement de microservices backend en Java Spring Boot connectés à des bases IBMi<br>- Encadrement et mentorat d’une équipe de trois développeurs juniors<br>- Création de suites de tests unitaires et d’intégration<br>- Formation des équipes sur Vue.js et Java Spring Boot<br>- Mise en place d’un PoC intégrant Kafka<br>- Contribution à la migration cloud GCP et intégration d’une base Firestore<br>- Rédaction et maintien de la documentation technique</p><br><b><u>Environnement technique :</u></b><br><p style='margin-left: 16px'>- Frontend : Vue.js 2 / Vue.js 3 / TypeScript<br>- Backend : Java (Spring Boot)<br>- Bases de données : PostgreSQL / IBMi / Firestore<br>- Cloud : Google Cloud Platform (GCP)<br>- Design & prototypage : Figma<br>- Qualité du code : SonarQube<br>- CI/CD : Jenkins<br>- Monitoring : Grafana, ELK / APM<br>- Gestion de projet : Jira</p>"
+      "description": "<b><u>Contexte</u></b> :<br><p style='margin-left: 16px'>En tant que consultant puis freelance, j’ai accompagné Système U dans la modernisation de leur suite d’applications de leur chaîne logistique.<br>Au sein de la division UIris, j’ai travaillé dans une équipe composée de 4 développeurs, 2 chefs de projet, 3 Product Owners et 1 designer UX/UI.<br>Pendant deux ans, nous avons conçu et développé trois nouvelles applications utilisées dans les entrepôts logistiques du groupe.</p><br><b><u>Tâches réalisées</u></b> :<br><p style='margin-left: 16px'>- Conception, développement, déploiement et maintenance de trois applications PWA frontend en Vue.js<br>- Développement et maintenance d’applications Android TWA en Java<br>- Développement de microservices backend en Java Spring Boot connectés à des bases IBMi<br>- Encadrement et mentorat d’une équipe de trois développeurs juniors<br>- Création de suites de tests unitaires et d’intégration<br>- Formation des équipes sur Vue.js et Java Spring Boot<br>- Mise en place d’un PoC intégrant Kafka<br>- Contribution à la migration cloud GCP et intégration d’une base Firestore<br>- Rédaction et maintien de la documentation technique</p><br><b><u>Environnement technique :</u></b><br><p style='margin-left: 16px'>- Frontend : Vue.js 2 / Vue.js 3 / TypeScript<br>- Backend : Java (Spring Boot)<br>- Bases de données : PostgreSQL / IBMi / Firestore<br>- Cloud : Google Cloud Platform (GCP)<br>- Design & prototypage : Figma<br>- Qualité du code : SonarQube<br>- CI/CD : Jenkins<br>- Monitoring : Grafana, ELK / APM<br>- Gestion de projet : Jira</p>"
     },
     "experience3": {
       "year": "septembre 2020 – septembre 2021",

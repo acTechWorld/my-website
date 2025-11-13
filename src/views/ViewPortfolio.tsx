@@ -40,6 +40,7 @@ const projects: Project[] = [
     tech: ["Vue.js", "TypeScript", "Node.js"],
     image: "/assets/imgs/portfolio-3.png",
     link: "https://vuelanding.com/",
+    github: "https://github.com/acTechWorld/VueLandingWebsite/tree/develop",
     storybook:
       "https://storybook.vuelanding.com/?path=/story/components-features-section--default",
   },
@@ -105,7 +106,7 @@ const ViewPortfolio: React.FC = () => {
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0 }}
-                  className="group bg-[#edeaf8] dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-blue-500 shadow-lg cursor-pointer"
+                  className="group bg-[#edeaf8] h-fit dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-blue-500 shadow-lg cursor-pointer"
                 >
                   {/* Image */}
                   <motion.div layout className="relative overflow-hidden h-56">
@@ -128,7 +129,7 @@ const ViewPortfolio: React.FC = () => {
                       </p>
                     )}
 
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 group-hover:line-clamp-none transition-all">
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 overflow-hidden transition-all duration-600 ease-in-out max-h-[4.5rem] group-hover:max-h-[20rem]">
                       {project.description}
                     </p>
 
