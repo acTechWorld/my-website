@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import ActionButton from "../components/ActionButton";
-import { Phone, Mail, Github, MapPin, Linkedin } from "lucide-react";
+import { Mail, Github, MapPin, Linkedin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 type ToastType = "success" | "error" | null;
@@ -21,12 +21,6 @@ const SectionContact: React.FC = () => {
   };
 
   const contactItems = [
-    {
-      icon: <Phone className="w-6 h-6 text-blue-500" />,
-      label: t("contact.phone"),
-      value: "+33 601090720",
-      href: "tel:+0123456789",
-    },
     {
       icon: <Mail className="w-6 h-6 text-blue-500" />,
       label: t("contact.email"),
