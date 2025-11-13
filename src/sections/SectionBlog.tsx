@@ -47,7 +47,7 @@ const SectionBlog: React.FC = () => {
     >
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row justify-between items-end gap-6 mb-16">
+        <div className="flex lex-row justify-between items-end gap-6 mb-16">
           <div>
             <h3 className="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-3">
               {t("blog.headerTitle")}

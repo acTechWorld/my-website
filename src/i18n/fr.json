@@ -154,7 +154,8 @@
     "title": "Compétences techniques",
     "description": "Au fil des années, j’ai perfectionné mes compétences sur le frontend comme sur le backend — en créant des applications web évolutives, des interfaces modernes et des API robustes.",
     "frontend": "Frontend",
-    "backend": "Backend"
+    "backend": "Backend",
+    "years": "ans"
   },
   "header": {
     "home": "Accueil",

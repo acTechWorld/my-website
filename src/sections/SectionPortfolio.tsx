@@ -118,7 +118,7 @@ const SectionPortfolio: React.FC = () => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
-                className="group bg-[#edeaf8] dark:bg-gray-800 h-fit rounded-3xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-blue-500 shadow-lg cursor-pointer"
+                className="group text-left bg-[#edeaf8] dark:bg-gray-800 h-fit rounded-3xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-blue-500 shadow-lg cursor-pointer"
               >
                 {/* Image */}
                 <motion.div layout className="relative overflow-hidden h-52">

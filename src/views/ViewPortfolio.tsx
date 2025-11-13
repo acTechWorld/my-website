@@ -116,7 +116,7 @@ const ViewPortfolio: React.FC = () => {
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0 }}
-                  className="group bg-[#edeaf8] h-fit dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-blue-500 shadow-lg cursor-pointer"
+                  className="group text-left bg-[#edeaf8] h-fit dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-300 dark:border-gray-700 hover:border-blue-500 shadow-lg cursor-pointer"
                 >
                   {/* Image */}
                   <motion.div layout className="relative overflow-hidden h-56">

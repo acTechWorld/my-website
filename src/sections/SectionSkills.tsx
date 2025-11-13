@@ -142,7 +142,7 @@ const SkillSection: React.FC = () => {
           <span className="font-medium">{skill.name}</span>
         </div>
         <span className="text-blue-600 dark:text-blue-400">
-          {skill.years} yrs
+          {skill.years} {t("skills.years")}
         </span>
       </div>
       <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
