@@ -2,6 +2,8 @@ import type { FC } from "react";
 import { DownloadIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { Trans, useTranslation } from "react-i18next";
+import i18n from "i18next";
+
 import {
   SiReact,
   SiVuedotjs,
@@ -77,7 +79,11 @@ const Hero: FC = () => {
 
           <div className="flex flex-wrap gap-3 mb-6">
             <a
-              href="/assets/pdfs/Antoine Canard CV.pdf"
+              href={
+                i18n.language === "en"
+                  ? "/assets/pdfs/Antoine Canard CV EN.pdf"
+                  : "/assets/pdfs/Antoine Canard CV FR.pdf"
+              }
               target="_blank"
               download
               className="btn inline-flex cursor-pointer items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:opacity-90 transition"

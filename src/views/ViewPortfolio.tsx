@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, Globe, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -79,6 +79,9 @@ const ViewPortfolio: React.FC = () => {
     });
   }, [search, translatedProjects]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  })
   return (
     <section className="relative min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white py-28">
       <div className="container mx-auto px-4 relative z-10">

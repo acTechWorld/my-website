@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -28,6 +28,10 @@ const ViewBlog: React.FC = () => {
       );
     });
   }, [search, blogPosts]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  })
 
   return (
     <section className="relative min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white py-28">
