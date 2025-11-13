@@ -35,6 +35,7 @@ const SectionResume: React.FC = () => {
     toggle: () => void
   ) => (
     <div
+      key={item.key}
       className="group relative p-4 mb-6 rounded-xl bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 cursor-pointer"
       onClick={toggle}
     >

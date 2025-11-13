@@ -41,7 +41,7 @@ const Hero: FC = () => {
 
       <div className="container mx-auto px-6 z-10 flex flex-col lg:flex-row items-center justify-between">
         {/* Text Content */}
-        <div className="lg:w-1/2">
+        <div className="lg:w-1/2 z-10">
           <span
             className="text-gray-700 dark:text-gray-300 text-lg"
             dangerouslySetInnerHTML={{ __html: t("hero.greeting") }}
@@ -80,7 +80,7 @@ const Hero: FC = () => {
               href="/assets/pdfs/resume.pdf"
               target="_blank"
               download
-              className="btn inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:opacity-90 transition"
+              className="btn inline-flex cursor-pointer items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:opacity-90 transition"
             >
               {t("hero.downloadResume")}
               <DownloadIcon />

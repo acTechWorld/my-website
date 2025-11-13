@@ -64,6 +64,10 @@ const ViewPortfolio: React.FC = () => {
     description: t(`portfolio.projects.${p.key}.description`),
   }));
 
+  const handleClickCard = (link: string | undefined) => {
+      if (link) window.open(link);
+  };
+
   const filteredProjects = useMemo(() => {
     return translatedProjects.filter((project) => {
       const query = search.toLowerCase();
@@ -105,10 +109,9 @@ const ViewPortfolio: React.FC = () => {
           {filteredProjects.length > 0 ? (
             <AnimatePresence>
               {filteredProjects.map((project, i) => (
-                <motion.a
+                <motion.button
                   key={i}
-                  href={project.link}
-                  target="blank"
+                  onClick={() => handleClickCard(project.link)}
                   layout
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -187,7 +190,7 @@ const ViewPortfolio: React.FC = () => {
                       )}
                     </div>
                   </motion.div>
-                </motion.a>
+                </motion.button>
               ))}
             </AnimatePresence>
           ) : (

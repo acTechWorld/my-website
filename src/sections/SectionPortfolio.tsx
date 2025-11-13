@@ -73,7 +73,9 @@ const SectionPortfolio: React.FC = () => {
   const { t } = useTranslation();
 
   const handleClickCTA = () => navigate("/portfolio");
-
+  const handleClickCard = (link: string | undefined) => {
+    if(link) window.open(link)
+  }
   return (
     <section
       id="portfolio"
@@ -107,10 +109,9 @@ const SectionPortfolio: React.FC = () => {
         >
           <AnimatePresence>
             {visibleProjects.map((project, index) => (
-              <motion.a
+              <motion.button
                 key={project.key}
-                href={project.link}
-                target="blank"
+                onClick={() => handleClickCard(project.link)}
                 layout
                 custom={index % 3}
                 variants={cardVariants}
@@ -194,7 +195,7 @@ const SectionPortfolio: React.FC = () => {
                     )}
                   </div>
                 </motion.div>
-              </motion.a>
+              </motion.button>
             ))}
           </AnimatePresence>
         </motion.div>
