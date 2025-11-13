@@ -39,28 +39,7 @@ const Hero: FC = () => {
         style={{ backgroundImage: "url('/assets/imgs/background_hero.png')" }}
       ></div>
 
-      {/* Hero Image */}
-      <div className="w-fit flex justify-center absolute pl-20 mt-10 lg:mt-0 bottom-0 left-1/2">
-        <img
-          src="/assets/imgs/hero-6.png"
-          alt="Antoine Canard"
-          className="max-h-[400px] object-contain relative z-10"
-        />
-        <motion.img
-          src="/assets/imgs/hero-7.png"
-          alt=""
-          className="absolute top-1/2 left-1/3 -translate-y-1/2 opacity-50 w-[500px]"
-          animate={{
-            rotate: [0, 45, 0],
-          }}
-          transition={{
-            duration: 9,
-            repeat: Infinity,
-          }}
-        />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center justify-between">
+      <div className="container mx-auto px-6 z-10 flex flex-col lg:flex-row items-center justify-between">
         {/* Text Content */}
         <div className="lg:w-1/2">
           <span
@@ -151,6 +130,26 @@ const Hero: FC = () => {
               {t("hero.techMore")}
             </span>
           </div>
+        </div>
+        {/* Hero Image */}
+        <div className="w-fit lg:absolute bottom-0 left-1/2">
+          <img
+            src="/assets/imgs/hero-6.png"
+            alt="Antoine Canard"
+            className="lg:max-h-[400px] object-contain relative z-10 max-h-[300px] -mb-14 lg:mb-auto"
+          />
+          <motion.img
+            src="/assets/imgs/hero-7.png"
+            alt=""
+            className="absolute hidden lg:flex top-1/2 left-1/3 -translate-y-1/2 opacity-50 w-[500px]"
+            animate={{
+              rotate: [0, 45, 0],
+            }}
+            transition={{
+              duration: 9,
+              repeat: Infinity,
+            }}
+          />
         </div>
       </div>
     </section>
