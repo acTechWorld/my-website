@@ -167,6 +167,7 @@ const SectionPortfolio: React.FC = () => {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 group-hover:text-blue-700 hover:dark:text-blue-300 transition"
                       >
                         <Globe className="w-4 h-4" />{" "}
@@ -178,6 +179,7 @@ const SectionPortfolio: React.FC = () => {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition"
                       >
                         <Github className="w-4 h-4" /> {t("portfolio.source")}
@@ -188,6 +190,7 @@ const SectionPortfolio: React.FC = () => {
                         href={project.storybook}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition"
                       >
                         {t("portfolio.storybook")}
