@@ -78,17 +78,24 @@ const Header: React.FC = () => {
 
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
-    if (href.startsWith("/#")) {
-      const sectionId = href.replace("/#", "");
-      if (location.pathname === "/") {
-        const section = document.getElementById(sectionId);
-        if (section) section.scrollIntoView({ behavior: "smooth" });
-      } else {
-        navigate("/");
-        setTimeout(() => {
+    if (href.startsWith("/")) {
+      if(href.startsWith("/#")){
+        const sectionId = href.replace("/#", "");
+        if (location.pathname === "/") {
           const section = document.getElementById(sectionId);
           if (section) section.scrollIntoView({ behavior: "smooth" });
-        }, 300);
+        } else {
+          navigate("/");
+          setTimeout(() => {
+            const section = document.getElementById(sectionId);
+            if (section) section.scrollIntoView({ behavior: "smooth" });
+          }, 300);
+        }
+      } else {
+        navigate(href);
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
       }
     } else {
       navigate(href);

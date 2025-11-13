@@ -109,7 +109,7 @@ const SectionResume: React.FC = () => {
       className="relative overflow-hidden bg-white dark:bg-gray-900 text-black dark:text-white py-8 md:py-24"
     >
       <div
-        className="absolute inset-0 bg-cover bg-center invert-50"
+        className="absolute inset-0 bg-center invert-50 lg:bg-cover"
         style={{ backgroundImage: "url('/assets/imgs/background_resume.png')" }}
       ></div>
 
@@ -124,10 +124,12 @@ const SectionResume: React.FC = () => {
               {t("resume.headerDescription")}
             </p>
           </div>
-          <ActionButton
-            text={t("resume.getInTouch")}
-            onClick={handleClickCTA}
-          />
+          <div className="self-center lg:self-auto">
+            <ActionButton
+              text={t("resume.getInTouch")}
+              onClick={handleClickCTA}
+            />
+          </div>
         </div>
 
         {/* Resume Cards */}
