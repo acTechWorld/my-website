@@ -33,11 +33,32 @@ const Hero: FC = () => {
   };
 
   return (
-    <section className="relative overflow-hidden py-28 bg-white dark:bg-gray-900">
+    <section className="relative overflow-hidden pt-28 pb-14 bg-white dark:bg-gray-900">
       <div
         className="absolute inset-0 bg-cover bg-center dark:invert-100"
         style={{ backgroundImage: "url('/assets/imgs/background_hero.png')" }}
       ></div>
+
+      {/* Hero Image */}
+      <div className="w-fit flex justify-center absolute pl-20 mt-10 lg:mt-0 bottom-0 left-1/2">
+        <img
+          src="/assets/imgs/hero-6.png"
+          alt="Antoine Canard"
+          className="max-h-[400px] object-contain relative z-10"
+        />
+        <motion.img
+          src="/assets/imgs/hero-7.png"
+          alt=""
+          className="absolute top-1/2 left-1/3 -translate-y-1/2 opacity-50 w-[500px]"
+          animate={{
+            rotate: [0, 45, 0],
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+          }}
+        />
+      </div>
 
       <div className="container mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center justify-between">
         {/* Text Content */}
@@ -130,20 +151,6 @@ const Hero: FC = () => {
               {t("hero.techMore")}
             </span>
           </div>
-        </div>
-
-        {/* Hero Image */}
-        <div className="lg:w-1/2 flex justify-center mt-10 lg:mt-0 relative">
-          <img
-            src="/assets/imgs/hero/hero-1/man.png"
-            alt="Antoine Canard"
-            className="max-h-[500px] object-contain relative z-10"
-          />
-          <img
-            src="/assets/imgs/hero/hero-1/decorate.png"
-            alt=""
-            className="absolute top-1/2 left-0 w-1/3 -translate-y-1/2 opacity-50"
-          />
         </div>
       </div>
     </section>
