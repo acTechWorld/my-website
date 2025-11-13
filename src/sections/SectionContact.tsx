@@ -4,10 +4,21 @@ import ActionButton from "@/components/ActionButton";
 import { Phone, Mail, Github, MapPin, Linkedin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+type ToastType = "success" | "error" | null;
+
 const SectionContact: React.FC = () => {
   const { t } = useTranslation();
   const [isSending, setIsSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [toast, setToast] = useState<{
+    type: ToastType;
+    message: string;
+  } | null>(null);
+
+  const showToast = (type: ToastType, message: string) => {
+    setToast({ type, message });
+    setTimeout(() => setToast(null), 4000); // Auto-hide after 4s
+  };
 
   const contactItems = [
     {
@@ -48,16 +59,23 @@ const SectionContact: React.FC = () => {
     const form = e.currentTarget;
 
     emailjs
-      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", form, "YOUR_PUBLIC_KEY")
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID!,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID!,
+        form,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
+      )
       .then(
         () => {
           setSent(true);
           setIsSending(false);
           form.reset();
+          showToast("success", "✅ Message sent successfully!");
         },
         (error: Error) => {
           console.error("Email send error:", error);
           setIsSending(false);
+          showToast("error", "❌ Failed to send message. Please try again.");
         }
       );
   };
@@ -67,6 +85,19 @@ const SectionContact: React.FC = () => {
       id="contact"
       className="relative overflow-hidden bg-[#edeaf8] dark:bg-gray-800 text-black dark:text-white py-8 md:py-24"
     >
+      {/* Toast notification */}
+      {toast && (
+        <div
+          className={`fixed top-6 right-6 z-50 px-6 py-3 rounded-xl shadow-lg text-white font-medium transition-all duration-500 ${
+            toast.type === "success"
+              ? "bg-green-300 animate-fadeIn"
+              : "bg-red-300 animate-fadeIn"
+          }`}
+        >
+          {toast.message}
+        </div>
+      )}
+
       <div className="container mx-auto px-4 relative z-10">
         <h3 className="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-4">
           {t("contact.headerTitle")}
@@ -213,6 +244,17 @@ const SectionContact: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Simple fade animation */}
+      <style>{`
+        @keyframes fadeIn {
+          0% { opacity: 0; transform: translateY(-10px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.4s ease forwards;
+        }
+      `}</style>
     </section>
   );
 };
