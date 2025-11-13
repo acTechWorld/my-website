@@ -97,6 +97,10 @@
       "vueLanding": {
         "title": "VueLanding",
         "description": "VueLanding offers a comprehensive suite of modern, responsive, and customizable Vue.js components, enabling developers to build stunning landing pages with ease."
+      },
+      "myWebsite": {
+        "title": "My Personal Website",
+        "description": "Personal project website, to display my skills and portfolio."
       }
     }
   },

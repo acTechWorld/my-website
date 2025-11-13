@@ -6,7 +6,7 @@ import { Github, Globe, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface Project {
-  title: string;
+  key: string;
   role?: string;
   tech: string[];
   image: string;
@@ -17,7 +17,7 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "vueDragPlayground",
+    key: "vueDragPlayground",
     tech: ["Vue.js", "TypeScript"],
     image: "/assets/imgs/portfolio-1.png",
     link: "https://vuedragplayground.actechworld.com/",
@@ -26,7 +26,7 @@ const projects: Project[] = [
       "https://vuedragplayground.storybook.actechworld.com/?path=/story/lib-components-vuedragplayground--default",
   },
   {
-    title: "vueOnboardingTour",
+    key: "vueOnboardingTour",
     tech: ["Vue.js", "Typescript"],
     image: "/assets/imgs/portfolio-2.png",
     link: "https://vueonboardingtour.actechworld.com/",
@@ -36,7 +36,7 @@ const projects: Project[] = [
       "https://vueonboardingtour.storybook.actechworld.com/?path=/story/lib-components-vueonboardingtour--default",
   },
   {
-    title: "vueLanding",
+    key: "vueLanding",
     tech: ["Vue.js", "TypeScript", "Node.js"],
     image: "/assets/imgs/portfolio-3.png",
     link: "https://vuelanding.com/",
@@ -44,17 +44,24 @@ const projects: Project[] = [
     storybook:
       "https://storybook.vuelanding.com/?path=/story/components-features-section--default",
   },
+  {
+    key: "myWebsite",
+    tech: ["React.js", "TypeScript"],
+    image: "/assets/imgs/portfolio-4.png",
+    link: "/",
+    github: "https://github.com/acTechWorld/my-website",
+  },
 ];
 
 const ViewPortfolio: React.FC = () => {
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
 
-  // Map projects to include translated title/description
+  // Map projects to include translated key/description
   const translatedProjects = projects.map((p) => ({
     ...p,
-    title: t(`portfolio.projects.${p.title}.title`),
-    description: t(`portfolio.projects.${p.title}.description`),
+    title: t(`portfolio.projects.${p.key}.title`),
+    description: t(`portfolio.projects.${p.key}.description`),
   }));
 
   const filteredProjects = useMemo(() => {

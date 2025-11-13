@@ -97,6 +97,10 @@
       "vueLanding": {
         "title": "VueLanding",
         "description": "VueLanding propose une suite complète de composants Vue.js modernes, réactifs et personnalisables, permettant aux développeurs de créer facilement de superbes pages d’accueil."
+      },
+      "myWebsite": {
+        "title": "My Site Personnel",
+        "description": "Site personnel, affichant mes compétences et mon portefeuille de projet."
       }
     }
   },

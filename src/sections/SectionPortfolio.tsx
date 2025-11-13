@@ -45,7 +45,7 @@ const projects: Project[] = [
     github: "https://github.com/acTechWorld/VueLandingWebsite/tree/develop",
     storybook:
       "https://storybook.vuelanding.com/?path=/story/components-features-section--default",
-  },
+  }
 ];
 
 const cardVariants = {
