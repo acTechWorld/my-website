@@ -38,6 +38,13 @@ const projects: Project[] = [
       "https://vueonboardingtour.storybook.actechworld.com/?path=/story/lib-components-vueonboardingtour--default",
   },
   {
+    key: "tftMeta",
+    tech: ["Vue.js", "TypeScript", "Node.js"],
+    image: "/assets/imgs/portfolio-5.png",
+    link: "https://tft-meta.actechworld.com/",
+    github: "https://github.com/acTechWorld/tftMetaFrontend",
+  },
+  {
     key: "vueLanding",
     tech: ["Vue.js", "TypeScript", "Node.js"],
     image: "/assets/imgs/portfolio-3.png",
@@ -45,7 +52,7 @@ const projects: Project[] = [
     github: "https://github.com/acTechWorld/VueLandingWebsite/tree/develop",
     storybook:
       "https://storybook.vuelanding.com/?path=/story/components-features-section--default",
-  }
+  },
 ];
 
 const cardVariants = {
@@ -144,7 +151,7 @@ const SectionPortfolio: React.FC = () => {
                       {project.role}
                     </p>
                   )}
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 overflow-hidden transition-all duration-600 ease-in-out max-h-[4.5rem] group-hover:max-h-[20rem]">
+                  <p className="text-gray-600 min-h-15 dark:text-gray-400 text-sm mb-4 overflow-hidden transition-all duration-600 ease-in-out max-h-15 group-hover:max-h-[20rem]">
                     {t(`portfolio.projects.${project.key}.description`)}
                   </p>
 

@@ -100,6 +100,10 @@
       "myWebsite": {
         "title": "My Personal Website",
         "description": "Personal project website, to display my skills and portfolio."
+      },
+      "tftMeta": {
+        "title": "TFT Meta",
+        "description": "A boarding composition planner for the video game TFT"
       }
     }
   },
